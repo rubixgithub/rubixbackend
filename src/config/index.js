@@ -12,7 +12,7 @@ const {
 
 const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
     dialect: DIALECT,
-    host: process.env.DB_HOST 
+    host: "rubix-database.cyrxij4ifelv.ap-south-1.rds.amazonaws.com"
 })
 
 export default sequelize
