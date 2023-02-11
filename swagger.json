@@ -1,0 +1,877 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Yet Another Node.js User Application API",
+      "description": "Yet Another Node.js User Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/users": {
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Get all users in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Users"
+              }
+            }
+          }
+        }
+      },
+      "/users/addRole":{
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Login new user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to login",
+              "schema": {
+                "$ref": "#/definitions/UserLogin"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema": {
+                "$ref": "#/definitions/UserLogin"
+              }
+            }
+          }
+        }
+      },
+      "/users/login":{
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Add new user role in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User role that we want to assingne to user",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          }
+        }
+      },
+      "/users/addAccess":{
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "description": "Login new user permission in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User permission that we want to login",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New user permission is created",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          }
+        }
+      },
+      "/users/{userId}": {
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "Get user with given ID",
+          "responses": {
+            "200": {
+              "description": "User is found",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete user with given ID",
+          "tags": [
+            "Users"
+          ],
+          "responses": {
+            "200": {
+              "description": "User is deleted",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update user with give ID",
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User is updated",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+        
+      },
+      "/roles": {
+        "post": {
+          "tags": [
+            "Role"
+          ],
+          "description": "Create new role in system",
+          "parameters": [
+            {
+              "name": "role",
+              "in": "body",
+              "description": "Role that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New role is created",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Role"
+          ],
+          "summary": "Get all role in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          }
+        }
+      },
+      "/roles/{roleId}": {
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "description": "ID of role that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Role"
+          ],
+          "summary": "Get role with given ID",
+          "responses": {
+            "200": {
+              "description": "Role is found",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete role with given ID",
+          "tags": [
+            "Role"
+          ],
+          "responses": {
+            "200": {
+              "description": "Role is deleted",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update role with give ID",
+          "tags": [
+            "Role"
+          ],
+          "parameters": [
+            {
+              "name": "role",
+              "in": "body",
+              "description": "Role with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Role is updated",
+              "schema": {
+                "$ref": "#/definitions/Role"
+              }
+            }
+          }
+        }
+        
+      },
+      "/access": {
+        "post": {
+          "tags": [
+            "Access"
+          ],
+          "description": "Create new access in system",
+          "parameters": [
+            {
+              "name": "access",
+              "in": "body",
+              "description": "Access that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New access is created",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Access"
+          ],
+          "summary": "Get all access in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          }
+        }
+      },
+      "/access/{accessId}": {
+        "parameters": [
+          {
+            "name": "accessId",
+            "in": "path",
+            "required": true,
+            "description": "ID of access that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Access"
+          ],
+          "summary": "Get access with given ID",
+          "responses": {
+            "200": {
+              "description": "access is found",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete access with given ID",
+          "tags": [
+            "Access"
+          ],
+          "responses": {
+            "200": {
+              "description": "Acess is deleted",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update access with give ID",
+          "tags": [
+            "Access"
+          ],
+          "parameters": [
+            {
+              "name": "access",
+              "in": "body",
+              "description": "Access with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Access is updated",
+              "schema": {
+                "$ref": "#/definitions/Access"
+              }
+            }
+          }
+        }
+        
+      },
+      "/organisation": {
+        "post": {
+          "tags": [
+            "Oganisation"
+          ],
+          "description": "Create new organisation in system",
+          "parameters": [
+            {
+              "name": "organisation",
+              "in": "body",
+              "description": "Organisation that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Organisation"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New organisation is created",
+              "schema": {
+                "$ref": "#/definitions/Organisation"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Oganisation"
+          ],
+          "summary": "Get all organisation in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Organisation"
+              }
+            }
+          }
+        }
+      },
+      "/organisation/{organisationId}": {
+        "parameters": [
+          {
+            "name": "organisationId",
+            "in": "path",
+            "required": true,
+            "description": "ID of organisation that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Oganisation"
+          ],
+          "summary": "Get organisation with given ID",
+          "responses": {
+            "200": {
+              "description": "Organisation is found",
+              "schema": {
+                "$ref": "#/definitions/Organisation"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete organisation with given ID",
+          "tags": [
+            "Oganisation"
+          ],
+          "responses": {
+            "200": {
+              "description": "Organisation is deleted",
+              "schema": {
+                "$ref": "#/definitions/Organisation"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update organisation with give ID",
+          "tags": [
+            "Oganisation"
+          ],
+          "parameters": [
+            {
+              "name": "organisation",
+              "in": "body",
+              "description": "Organisation with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Organisation"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Organisation is updated",
+              "schema": {
+                "$ref": "#/definitions/Organisation"
+              }
+            }
+          }
+        }
+        
+      },
+      "/email": {
+        "post": {
+          "tags": [
+            "Email"
+          ],
+          "description": "Create email template in system",
+          "parameters": [
+            {
+              "name": "email",
+              "in": "body",
+              "description": "Email template that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Email"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New email template is created",
+              "schema": {
+                "$ref": "#/definitions/Email"
+              }
+            }
+          }
+        },
+
+        "get": {
+          "tags": [
+            "Email"
+          ],
+          "summary": "Get all email template in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Email"
+              }
+            }
+          }
+        }
+      },
+      "/email/{emailId}": {
+        "parameters": [
+          {
+            "name": "emailId",
+            "in": "path",
+            "required": true,
+            "description": "ID of email template that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Email"
+          ],
+          "summary": "Get email template with given ID",
+          "responses": {
+            "200": {
+              "description": "Email template is found",
+              "schema": {
+                "$ref": "#/definitions/Email"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete email template with given ID",
+          "tags": [
+            "Email"
+          ],
+          "responses": {
+            "200": {
+              "description": "Email template is deleted",
+              "schema": {
+                "$ref": "#/definitions/Email"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update Email template with give ID",
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Email template with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Email"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Email template is updated",
+              "schema": {
+                "$ref": "#/definitions/Email"
+              }
+            }
+          }
+        }
+        
+      }
+      
+    },
+    "definitions": {
+      "User": {
+        "required": [
+          "email",
+          "password",
+          "language",
+          "profile_picture"
+        ],
+        "properties": {
+          "userName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "language":{
+            "type": "string"
+          },
+          "profile_picture":{
+            "type": "string"
+          }
+        },
+        "UserLogin":{
+          "required": [
+            "email",
+            "password"
+          ],
+          "properties": {
+            "email": {
+              "type": "string",
+              "uniqueItems": true
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      },
+      "UserLogin":{
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      },
+      "Access":{
+        "required": [
+          "name",
+          "view",
+          "create",
+          "edit",
+          "isdelete"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "view": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "create": {
+            "type": "boolean"
+          },
+          "edit":{
+            "type": "boolean"
+          },
+          "isdelete":{
+            "type": "boolean"
+          }
+        }
+      },
+      "Role":{
+        "required": [
+          "name",
+          "description"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      },
+      "Organisation":{
+        "required": [
+          "name",
+          "logo",
+          "create",
+          "country_id",
+          "state_teritory",
+          "address_1",
+          "address_2",
+          "city",
+          "postal_code",
+          "iec",
+          "org_currency",
+          "inventory_start_date",
+          "fiscal_year",
+          "contact_no",
+          "email",
+          "default_org_flag",
+          "is_gst"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "logo": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "create": {
+            "type": "string"
+          },
+          "country_id":{
+            "type": "string"
+          },
+          "state_teritory":{
+            "type": "string"
+          },
+          "address_1": {
+            "type": "string"
+          },
+          "address_2":{
+            "type": "string"
+          },
+          "city":{
+            "type": "string"
+          },
+          
+          "postal_code": {
+            "type": "string"
+          },
+          "iec":{
+            "type": "BIGINT"
+          },
+          "org_currency":{
+            "type": "string"
+          },
+          "inventory_start_date": {
+            "type": "date"
+          },
+          "fiscal_year":{
+            "type": "bigInt"
+          },
+          "contact_no":{
+            "type": "bigInt"
+          },
+          "email":{
+            "type": "string"
+          },
+          "default_org_flag":{
+            "type": "boolean"
+          },
+          "is_gst":{
+            "type": "boolean"
+          }
+          
+        }
+      },
+      "Email":{
+        "required": [
+          "temp_id",
+          "slug_name",
+          "lang",
+          "internal_name",
+          "templ_name",
+          "status",
+          "content"
+        ],
+        "properties": {
+          "temp_id": {
+            "type": "string"
+          },
+          "slug_name": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "lang": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "internal_name": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "templ_name": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "status": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "content": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
