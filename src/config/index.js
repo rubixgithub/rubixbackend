@@ -10,14 +10,9 @@ const {
     DIALECT
 } = process.env
 
-// const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
-//     dialect: DIALECT,
-//     host: "rubix-database.cyrxij4ifelv.ap-south-1.rds.amazonaws.com"
-// })
-
-const sequelize = new Sequelize("mydb", "postgres", "postgres", {
+const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
     dialect: DIALECT,
-    host: "rubix-database.cyrxij4ifelv.ap-south-1.rds.amazonaws.com"
+    host: process.env.DB_HOST 
 })
 
 export default sequelize
