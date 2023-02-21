@@ -1,19 +1,19 @@
 import express from 'express'
 
-import roleValidator from "../../validators/role";
-import roleController from "../../controllers/role"
+import contectPersonValidator from "../../validators/contect_person";
+import contectPersonController from "../../controllers/contect_person"
 import auth from "../../middleware/auth"
 
-const Role = express.Router()
+const ContectPerson = express.Router()
 
-export default Role
+export default ContectPerson
 
-.get('/', roleController.getRole)
+.get('/', contectPersonController.getContectPerson)
 
-.post('/', [auth,roleValidator.createRole], roleController.createRole)
+.post('/', [auth,contectPersonValidator.createContectPerson], contectPersonController.createContectPerson)
 
-.get('/:id', roleController.getRoleById)
+.get('/:id', contectPersonController.getContectPerson)
 
-// .delete('/:id', roleValidator.deleteUser, roleController.deleteRole)
+.delete('/:id', contectPersonValidator.deleteContectPerson, contectPersonController.deleteContectPerson)
 
-.put('/:id', roleValidator.updateRoleById, roleController.updateRoleById)
+.put('/:id', contectPersonValidator.updateContectPersonById, contectPersonController.updateContectPersonById)

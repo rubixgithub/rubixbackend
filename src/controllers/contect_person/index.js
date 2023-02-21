@@ -3,7 +3,7 @@ import {
     postContectPersonService,
     deleteContectPersonService,
     putContectPersonService
-} from '../../services/ContectPerson'
+} from '../../services/contect_person'
 
 import constants from '../../constants'
 import { throwError, OK } from '../../util/helper'
@@ -37,14 +37,24 @@ const createContectPerson = async (req, res) => {
     try {
         console.log("nfjdjfjdhfj")
         const {
-            name,
-            description
+            salutation,
+            first_name,
+            last_name,
+            email,
+            work_phone,
+            mobile,
+            is_primary
         } = req.body
         const contectPersonExists = await getContectPersonService.byName(name);
         if(!contectPersonExists) {
         const newContectPerson = await postContectPersonService.create({
-            name,
-            description
+            salutation,
+            first_name,
+            last_name,
+            email,
+            work_phone,
+            mobile,
+            is_primary
         })
         OK(CREATED, res, newContectPerson)
     }else{

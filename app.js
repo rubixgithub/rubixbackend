@@ -18,7 +18,7 @@ app.use(express.static('public'))
 
 routes(app)
 
-sequelize.sync({ force: true })
+// sequelize.sync({ force: true })
 
 app.listen(process.env.PORT || DEV_SERVER_PORT)
 

@@ -3,7 +3,7 @@ import {
     postAddressService,
     deleteAddressService,
     putAddressService
-} from '../../services/Address'
+} from '../../services/address/'
 
 import constants from '../../constants'
 import { throwError, OK } from '../../util/helper'
@@ -35,16 +35,27 @@ const getAddressById = async (req, res) => {
 
 const createAddress = async (req, res) => {
     try {
-        console.log("nfjdjfjdhfj")
         const {
-            name,
-            description
+            attention,
+            country,
+            address_1,
+            address_2,
+            city,
+            state,
+            postal_code,
+            phone
         } = req.body
-        const addressExists = await getAddressService.byName(name);
+        const addressExists = await getAddressService.byAttention(attention);
         if(!addressExists) {
         const newAddress = await postAddressService.create({
-            name,
-            description
+            attention,
+            country,
+            address_1,
+            address_2,
+            city,
+            state,
+            postal_code,
+            phone
         })
         OK(CREATED, res, newAddress)
     }else{
@@ -67,12 +78,24 @@ const deleteAddress = async (req, res) => {
 const updateAddressById = async (req, res) => {
     try {
         const {
-            name,
-            discription
+            attention,
+            country,
+            address_1,
+            address_2,
+            city,
+            state,
+            postal_code,
+            phone
         } = req.body
         const updateAddressById = await putAddressService.byId(req.params.id, {
-            name,
-            discription
+            attention,
+            country,
+            address_1,
+            address_2,
+            city,
+            state,
+            postal_code,
+            phone
         })
         OK(SUCCESS, res, updateAddressById)
     } catch (e) {

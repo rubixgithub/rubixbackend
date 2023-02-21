@@ -8,9 +8,9 @@ const Address = express.Router()
 
 export default Address
 
-.get('/', addressController.getaddress)
+.get('/',addressController.getAddress)
 
-.post('/', [auth,addressValidator.createAddress], addressController.createaddress)
+.post('/', [auth,addressValidator.createAddress], addressController.createAddress)
 
 .get('/:id', addressController.getAddressById)
 

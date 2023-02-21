@@ -2,8 +2,8 @@ import sequelize from '../../../models'
 import constants from '../../../constants'
 
 const {
-    ROLE_IS_UPDATED,
-    ROLE_IS_NOT_EXISTS
+    ADDRESS_IS_UPDATED,
+    ADDRESS_IS_NOT_EXISTS
 } = constants
 
 const byId = async (id, address) => {
@@ -13,9 +13,9 @@ const byId = async (id, address) => {
         }
     })
     if(result && result.length && result[0]){
-        return { message: ROLE_IS_UPDATED }
+        return { message: ADDRESS_IS_UPDATED }
     }else{
-        return { message: ROLE_IS_NOT_EXISTS }
+        return { message: ADDRESS_IS_NOT_EXISTS }
     }
 }
 
