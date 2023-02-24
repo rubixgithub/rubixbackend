@@ -396,6 +396,8 @@ const successMessages = {
     PRODUCTGROUP_ALREADY_EXISTS:`Product group all ready exists`,
     PRODUCTGROUP_IS_DELETED:`Product group is decline`,
     PRODUCTGROUP_IS_NOT_EXISTS:`Product group is not exists`,
+    PRODUCTGROUP_IS_UPDATED:`Product group is updated`,
+    PRODUCTGROUP_IS_CREATED:`Product group is created`,
     
     SALESORDER_ALREADY_EXISTS:`Sales order all ready exists`,
     SALESORDER_IS_DELETED:`Sales order is decline`,

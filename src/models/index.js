@@ -22,7 +22,6 @@ import Gst from './gst'
 import IcAdvice from './ic_advice'
 import PaymentTerm from './payment_term'
 import Product from './product'
-import ProductGroup from './product_group'
 import ProductList from './product_list'
 import SaleOrder from './sales_order'
 import Wearhouse from './wearhouse'
@@ -48,7 +47,6 @@ const gst = sequelize.define('gst',Gst)
 const ic_advice = sequelize.define('ic_advice',IcAdvice)
 const payment_terms = sequelize.define('payment_terms',PaymentTerm)
 const product = sequelize.define('product',Product)
-const product_group = sequelize.define('product_group',ProductGroup)
 const product_list = sequelize.define('product_list',ProductList)
 const sale_order = sequelize.define('sale_order',SaleOrder)
 const unit_division = sequelize.define('unit_division',UnitDivision)
