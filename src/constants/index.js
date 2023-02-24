@@ -311,6 +311,12 @@ const successMessages = {
     ROLE_IS_NOT_EXISTS:`Role is not exists`,
     ROLE_IS_UPDATED : `Role is created`,
     ROLE_IS_NOT_EXISTS:`Role is not exists`,
+
+    UNIT_MEASUREMENT_ALREADY_EXISTS:`Unit measurement is already exists`,
+    UNIT_MEASUREMENT_IS_DELETED:`Unit measurement is DELETED`,
+    UNIT_MEASUREMENT_IS_NOT_EXISTS:`Unit measurement is not exists`,
+    UNIT_MEASUREMENT_IS_UPDATED : `Unit measurement is updated`,
+    UNIT_MEASUREMENT_IS_NOT_EXISTS:`Unit measurement is not exists`,
     
     LOG_IS_UPDATED:`Log is created`,
     LOG_IS_NOT_EXISTS:`Log is updated`,

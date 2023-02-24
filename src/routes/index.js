@@ -8,6 +8,7 @@ import Address from './address'
 import Branch from './branch'
 import BusinessPartnerType from './business_partener_type'
 import ContectPerson from "./contect_person"
+import UnitOfMeasurement from './unit_of_measurement'
 
 
 
@@ -21,6 +22,7 @@ const routes = (app) => {
     app.use("/branch",Branch)
     app.use("/businessPartnerType",BusinessPartnerType)
     app.use("/contectPerson",ContectPerson)
+    app.use("/unit-of-measurement", UnitOfMeasurement)
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 }
 
