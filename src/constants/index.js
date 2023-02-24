@@ -317,6 +317,12 @@ const successMessages = {
     UNIT_MEASUREMENT_IS_NOT_EXISTS:`Unit measurement is not exists`,
     UNIT_MEASUREMENT_IS_UPDATED : `Unit measurement is updated`,
     UNIT_MEASUREMENT_IS_NOT_EXISTS:`Unit measurement is not exists`,
+
+    MANUFACTURER_ALREADY_EXISTS:`Manufacturer is already exists`,
+    MANUFACTURER_IS_DELETED:`Manufacturer is DELETED`,
+    MANUFACTURER_IS_NOT_EXISTS:`Manufacturer is not exists`,
+    MANUFACTURER_IS_UPDATED : `Manufacturer is updated`,
+    MANUFACTURER_IS_NOT_EXISTS:`Manufacturer is not exists`,
     
     LOG_IS_UPDATED:`Log is created`,
     LOG_IS_NOT_EXISTS:`Log is updated`,
