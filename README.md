@@ -1,6 +1,6 @@
 # User Persistence Assignment in NodeJS and PostgreSQL 
 
-In this project we have used following dependency
+In this project we have used following dependencies
 
 - [x] node 
 - [x] express 
