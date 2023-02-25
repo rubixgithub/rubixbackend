@@ -388,6 +388,8 @@ const successMessages = {
     PRODUCT_ALREADY_EXISTS:`Product all ready exists`,
     PRODUCT_IS_DELETED:`Product is decline`,
     PRODUCT_IS_NOT_EXISTS:`Product is not exists`,
+    PRODUCT_IS_CREATED:`Product is not exists`,
+    PRODUCT_IS_UPDATED:`Product is not exists`,
 
     PRODUCTLIST_ALREADY_EXISTS:`Product list all ready exists`,
     PRODUCTLIST_IS_DELETED:`Product list is decline`,

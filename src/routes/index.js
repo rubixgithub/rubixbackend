@@ -11,6 +11,7 @@ import ContectPerson from "./contect_person";
 import UnitOfMeasurement from "./unit_of_measurement";
 import Manufacturer from "./manufacturer";
 import ProductGroup from "./product_group";
+import Product from "./product";
 
 const routes = (app) => {
   app.use("/users", User);
@@ -24,6 +25,7 @@ const routes = (app) => {
   app.use("/unit-of-measurement", UnitOfMeasurement);
   app.use("/manufacturer", Manufacturer);
   app.use("/product-group", ProductGroup);
+  app.use("/product", Product);
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 };
 
