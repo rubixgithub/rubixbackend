@@ -1,21 +1,23 @@
-import sequelize from '../../../models'
+import CustomerGroup from "../../../models/customer_group";
 
-const all = async () => sequelize.models.customer_group.findAll()
+const all = async () => CustomerGroup.findAll();
 
-const byId = async (id) => sequelize.models.customer_group.findOne({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  CustomerGroup.findOne({
+    where: {
+      id,
+    },
+  });
 
-const byName = async (name) => sequelize.models.customer_group.findOne({
-    where:{
-        name
-    }
-})
+const byName = async (name) =>
+  CustomerGroup.findOne({
+    where: {
+      group_name: name,
+    },
+  });
 
 export default {
-    all,
-    byId,
-    byName,
-}
+  all,
+  byId,
+  byName,
+};

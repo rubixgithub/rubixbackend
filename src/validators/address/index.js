@@ -13,10 +13,6 @@ const createAddress = async (req, res, next) => {
         name: Joi.string()
             .min(MINIMUM_LENGTH_FOR_NAME)
             .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
             .required()
 
     })

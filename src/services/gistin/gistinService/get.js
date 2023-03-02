@@ -1,21 +1,23 @@
-import sequelize from '../../../models'
+import GistinDetail from "../../../models/gistin";
 
-const all = async () => sequelize.models.gistin.findAll()
+const all = async () => GistinDetail.findAll();
 
-const byId = async (id) => sequelize.models.gistin.findOne({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  GistinDetail.findOne({
+    where: {
+      id,
+    },
+  });
 
-const byName = async (name) => sequelize.models.gistin.findOne({
-    where:{
-        name
-    }
-})
+const byGstin = async (gistin) =>
+  GistinDetail.findOne({
+    where: {
+      gistin,
+    },
+  });
 
 export default {
-    all,
-    byId,
-    byName,
-}
+  all,
+  byId,
+  byGstin,
+};

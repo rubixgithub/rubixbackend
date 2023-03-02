@@ -1,11 +1,12 @@
-import sequelize from '../../../models'
+import GistinDetail from "../../../models/gistin";
 
-const byId = async (id) => sequelize.models.gistin.destroy({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  GistinDetail.destroy({
+    where: {
+      id,
+    },
+  });
 
 export default {
-    byId
-}
+  byId,
+};

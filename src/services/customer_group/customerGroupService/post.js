@@ -1,7 +1,8 @@
-import sequelize from '../../../models'
+import CustomerGroup from "../../../models/customer_group";
 
-const create = async (customer_group) => sequelize.models.customer_group.create(customer_group)
+const create = async (customerGroupDetails) =>
+  CustomerGroup.create(customerGroupDetails);
 
 export default {
-    create
-}
+  create,
+};

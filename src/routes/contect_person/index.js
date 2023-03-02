@@ -1,19 +1,17 @@
-import express from 'express'
+import express from "express";
 
-import roleValidator from "../../validators/role";
-import roleController from "../../controllers/role"
-import auth from "../../middleware/auth"
+import contactPersonController from "../../controllers/contect_person";
 
-const Role = express.Router()
+const ContactPerson = express.Router();
 
-export default Role
+ContactPerson.get("/", contactPersonController.getContectPerson);
 
-.get('/', roleController.getRole)
+ContactPerson.post("/", contactPersonController.createContectPerson);
 
-.post('/', [auth,roleValidator.createRole], roleController.createRole)
+ContactPerson.get("/:id", contactPersonController.getContectPersonById);
 
-.get('/:id', roleController.getRoleById)
+ContactPerson.delete('/:id', contactPersonController.deleteContectPerson)
 
-// .delete('/:id', roleValidator.deleteUser, roleController.deleteRole)
+ContactPerson.put("/:id", contactPersonController.updateContectPersonById);
 
-.put('/:id', roleValidator.updateRoleById, roleController.updateRoleById)
+export default ContactPerson;

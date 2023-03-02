@@ -1,19 +1,17 @@
-import express from 'express'
+import express from "express";
 
-import roleValidator from "../../validators/role";
-import roleController from "../../controllers/role"
-import auth from "../../middleware/auth"
+import gistinController from "../../controllers/gistin";
 
-const Role = express.Router()
+const Gistin = express.Router();
 
-export default Role
+Gistin.get("/", gistinController.getGistin);
 
-.get('/', roleController.getRole)
+Gistin.post("/", gistinController.createGistin);
 
-.post('/', [auth,roleValidator.createRole], roleController.createRole)
-
-.get('/:id', roleController.getRoleById)
+Gistin.get("/:id", gistinController.getGistinById);
 
 // .delete('/:id', roleValidator.deleteUser, roleController.deleteRole)
 
-.put('/:id', roleValidator.updateRoleById, roleController.updateRoleById)
+Gistin.put("/:id", gistinController.updateGistinById);
+
+export default Gistin;

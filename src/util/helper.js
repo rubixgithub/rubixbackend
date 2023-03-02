@@ -1,17 +1,12 @@
-import constants from '../constants'
-const {
-    ERROR
-} = constants
+import constants from "../constants";
+const { ERROR } = constants;
 
 const throwError = (res, e) => {
-    res.status(ERROR).json(e)
-}
+  res.status(ERROR).json({ error: e, message: e?.message });
+};
 
 const OK = (errorCode, res, jsonValue) => {
-    res.status(errorCode).json(jsonValue)
-}
+  res.status(errorCode).json(jsonValue);
+};
 
-export {
-    throwError,
-    OK
-}
+export { throwError, OK };

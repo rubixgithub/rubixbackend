@@ -3,7 +3,7 @@ import {
     postGistinService,
     deleteGistinService,
     putGistinService
-} from '../../services/Gistin'
+} from '../../services/gistin'
 
 import constants from '../../constants'
 import { throwError, OK } from '../../util/helper'
@@ -36,14 +36,16 @@ const getGistinById = async (req, res) => {
 const createGistin = async (req, res) => {
     try {
         const {
-            name,
-            description
+            gistin,
+            state,
+            address
         } = req.body
-        const gistinExists = await getGistinService.byName(name);
+        const gistinExists = await getGistinService.byGstin(gistin);
         if(!gistinExists) {
         const newGistin = await postGistinService.create({
-            name,
-            description
+            gistin,
+            state,
+            address
         })
         OK(CREATED, res, newGistin)
     }else{
@@ -66,12 +68,14 @@ const deleteGistin = async (req, res) => {
 const updateGistinById = async (req, res) => {
     try {
         const {
-            name,
-            discription
+            gistin,
+            state,
+            address
         } = req.body
         const updateGistinById = await putGistinService.byId(req.params.id, {
-            name,
-            discription
+            gistin,
+            state,
+            address
         })
         OK(SUCCESS, res, updateGistinById)
     } catch (e) {

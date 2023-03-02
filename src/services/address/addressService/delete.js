@@ -1,11 +1,12 @@
-import sequelize from '../../../models'
+import Address from "../../../models/address";
 
-const byId = async (id) => sequelize.models.address.destroy({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  Address.destroy({
+    where: {
+      id,
+    },
+  });
 
 export default {
-    byId
-}
+  byId,
+};

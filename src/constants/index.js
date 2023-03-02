@@ -63,6 +63,7 @@ const successMessages = {
     ADDRESS_ALREADY_EXISTS:`Address all ready exists`,
     ADDRESS_IS_DELETED:`Address is decline`,
     ADDRESS_IS_NOT_EXISTS:`Address is not exists`,
+    ADDRESS_IS_UPDATED:`Address is updated`,
 
     BRANCH_ALREADY_EXISTS:`Branch all ready exists`,
     BRANCH_IS_DELETED:`Branch is decline`,
@@ -79,14 +80,17 @@ const successMessages = {
     CONTECTPERSON_ALREADY_EXISTS:`Contect Person all ready exists`,
     CONTECTPERSON_IS_DELETED:`Contect Person is decline`,
     CONTECTPERSON_IS_NOT_EXISTS:`Contect Person is not exists`,
+    CONTECTPERSON_IS_UPDATED:`Contect Person is updated`,
 
     CUSTOMER_ALREADY_EXISTS:`Customer all ready exists`,
     CUSTOMER_IS_DELETED:`Customer is decline`,
     CUSTOMER_IS_NOT_EXISTS:`Customer is not exists`,
+    CUSTOMER_IS_UPDATED:`Customer is updated`,
 
     CUSTOMERGROUP_ALREADY_EXISTS:`Customer Group all ready exists`,
     CUSTOMERGROUP_IS_DELETED:`Customer Group is decline`,
     CUSTOMERGROUP_IS_NOT_EXISTS:`Customer Group is not exists`,
+    CUSTOMERGROUP_IS_UPDATED:`Customer Group is updated`,
 
     DOCUMENTTYPE_ALREADY_EXISTS:`Document Type all ready exists`,
     DOCUMENTTYPE_IS_DELETED:`Document Type is decline`,
@@ -103,6 +107,7 @@ const successMessages = {
     GISTIN_ALREADY_EXISTS:`Gistin all ready exists`,
     GISTIN_IS_DELETED:`Gistin is decline`,
     GISTIN_IS_NOT_EXISTS:`Gistin is not exists`,
+    GISTIN_IS_UPDATED:`Gistin is updated`,
 
 
     GST_ALREADY_EXISTS:`Gst all ready exists`,

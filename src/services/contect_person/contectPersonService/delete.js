@@ -1,11 +1,12 @@
-import sequelize from '../../../models'
+import ContactPerson from "../../../models/contect_person";
 
-const byId = async (id) => sequelize.models.contect_person.destroy({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  ContactPerson.destroy({
+    where: {
+      id,
+    },
+  });
 
 export default {
-    byId
-}
+  byId,
+};
