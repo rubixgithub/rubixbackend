@@ -1,11 +1,12 @@
-import sequelize from '../../../models'
+import { Product } from "../../../models";
 
-const byId = async (id) => sequelize.models.product.destroy({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+    Product.destroy({
+        where: {
+            id
+        }
+    });
 
 export default {
     byId
-}
+};
