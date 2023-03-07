@@ -1,12 +1,13 @@
-import sequelize from '../../../models'
+import Address from "../../../models/address";
 
-const all = async () => sequelize.models.address.findAll()
+const all = async () => Address.findAll();
 
-const byId = async (id) => sequelize.models.address.findOne({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  Address.findOne({
+    where: {
+      id,
+    },
+  });
 
 const byAttention = async (attention) => sequelize.models.address.findOne({
     where:{

@@ -1,19 +1,17 @@
-import express from 'express'
+import express from "express";
 
-import contectPersonValidator from "../../validators/contect_person";
-import contectPersonController from "../../controllers/contect_person"
-import auth from "../../middleware/auth"
+import contactPersonController from "../../controllers/contect_person";
 
-const ContectPerson = express.Router()
+const ContactPerson = express.Router();
 
-export default ContectPerson
+ContactPerson.get("/", contactPersonController.getContectPerson);
 
-.get('/', contectPersonController.getContectPerson)
+ContactPerson.post("/", contactPersonController.createContectPerson);
 
-.post('/', [auth,contectPersonValidator.createContectPerson], contectPersonController.createContectPerson)
+ContactPerson.get("/:id", contactPersonController.getContectPersonById);
 
-.get('/:id', contectPersonController.getContectPerson)
+ContactPerson.delete('/:id', contactPersonController.deleteContectPerson)
 
-.delete('/:id', contectPersonValidator.deleteContectPerson, contectPersonController.deleteContectPerson)
+ContactPerson.put("/:id", contactPersonController.updateContectPersonById);
 
-.put('/:id', contectPersonValidator.updateContectPersonById, contectPersonController.updateContectPersonById)
+export default ContactPerson;

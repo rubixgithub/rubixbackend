@@ -1,19 +1,17 @@
-import express from 'express'
+import express from "express";
 
-import addressValidator from "../../validators/address";
-import addressController from "../../controllers/address"
-import auth from "../../middleware/auth"
+import addressController from "../../controllers/address";
 
-const Address = express.Router()
+const Address = express.Router();
 
-export default Address
+Address.get("/", addressController.getAddress);
 
-.get('/',addressController.getAddress)
+Address.post("/", addressController.createAddress);
 
-.post('/', [auth,addressValidator.createAddress], addressController.createAddress)
-
-.get('/:id', addressController.getAddressById)
+Address.get("/:id", addressController.getAddressById);
 
 // .delete('/:id', addressValidator.deleteUser, addressController.deleteaddress)
 
-.put('/:id', addressValidator.updateAddressById, addressController.updateAddressById)
+Address.put("/:id", addressController.updateAddressById);
+
+export default Address;

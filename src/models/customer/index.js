@@ -1,76 +1,113 @@
 import { Sequelize } from "sequelize";
+import sequelize from "../../config";
+import Address from "../address";
+import ContactPerson from "../contect_person";
+import CustomerGroup from "../customer_group";
+import GistinDetail from "../gistin";
 
-const Customer = {
-    customer_code: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:true
-    },
-    customer_name: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    contact_salutation: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    contact_first_name: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    contact_last_name: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    designation: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    department: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    email: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    phone: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    tax_identifier: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    enable_access: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    created_by: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    contract_type: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    contract_policy_id: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    }
-}
+const Customer = sequelize.define("customer", {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+    allowNull: false,
+  },
+  customerCode: {
+    type: Sequelize.BIGINT(),
+    allowNull: false,
+    unique: true,
+  },
+  customerName: {
+    type: Sequelize.STRING(63),
+    allowNull: false,
+    max: 45,
+  },
+  contactSalutation: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  contactFirstName: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  contactLastName: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  designation: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  department: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  email: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  phone: {
+    type: Sequelize.BIGINT(),
+    allowNull: false,
+  },
+  taxIdentifier: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  enableAccess: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  createdBy: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  contractType: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+  contractPolicyId: {
+    type: Sequelize.STRING(45),
+    allowNull: false,
+    max: 45,
+  },
+});
 
-export default Customer
+export default Customer;
+
+Customer.hasMany(Address, {
+  foreignKey: "customerId",
+  as: "Addresses",
+});
+
+Address.belongsTo(Customer, {
+  foreignKey: "customerId",
+  as: "Customers",
+});
+
+Customer.hasMany(ContactPerson, {
+  foreignKey: "customerId",
+  as: "ContactPersons",
+});
+
+ContactPerson.belongsTo(Customer, {
+  foreignKey: "customerId",
+  as: "Customers",
+});
+
+Customer.belongsToMany(CustomerGroup, {
+  through: "customer_customer_groups",
+});
+
+CustomerGroup.belongsToMany(Customer, {
+  through: "customer_customer_groups",
+});

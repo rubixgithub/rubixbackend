@@ -1,19 +1,17 @@
-import express from 'express'
+import express from "express";
 
-import roleValidator from "../../validators/role";
-import roleController from "../../controllers/role"
-import auth from "../../middleware/auth"
+import customerGroupController from "../../controllers/customer_group";
 
-const Role = express.Router()
+const CustomerGroup = express.Router();
 
-export default Role
+CustomerGroup.get("/", customerGroupController.getCustomerGroup);
 
-.get('/', roleController.getRole)
+CustomerGroup.post("/", customerGroupController.createCustomerGroup);
 
-.post('/', [auth,roleValidator.createRole], roleController.createRole)
+CustomerGroup.get("/:id", customerGroupController.getCustomerGroupById);
 
-.get('/:id', roleController.getRoleById)
+//CustomerGroup.delete('/:id', roleValidator.deleteUser, roleController.deleteRole)
 
-// .delete('/:id', roleValidator.deleteUser, roleController.deleteRole)
+CustomerGroup.put("/:id", customerGroupController.updateCustomerGroupById);
 
-.put('/:id', roleValidator.updateRoleById, roleController.updateRoleById)
+export default CustomerGroup;

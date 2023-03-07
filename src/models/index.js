@@ -35,19 +35,14 @@ const access = sequelize.define("access", Access);
 const organisation = sequelize.define("organisation", Organisation);
 const userlog = sequelize.define("userlog", UserLog);
 const email = sequelize.define("email", Email);
-const address = sequelize.define("address", Address);
 const branch = sequelize.define("branch", Branch);
 const business_partner_type = sequelize.define(
     "business_partner_type",
     BusinessPartnerType
 );
 const business_partner = sequelize.define("business_partner", BusinessPartner);
-const customer = sequelize.define("customer", Customer);
-const contect_person = sequelize.define("contect_person", ContectPerson);
-const customer_group = sequelize.define("customer_group", CustomerGroup);
 const document_type = sequelize.define("document_type", DocumentType);
 const exports = sequelize.define("exports", Exports);
-const gistin = sequelize.define("gistin", Gistin);
 const gst = sequelize.define("gst", Gst);
 const ic_advice = sequelize.define("ic_advice", IcAdvice);
 const payment_terms = sequelize.define("payment_terms", PaymentTerm);
@@ -77,10 +72,7 @@ const wearhouse = sequelize.define("wearhouse", Wearhouse);
 //     foreignKey:"product_group_id",
 //     as:"product_group"
 // })
-customer_group.hasMany(customer, {
-    foreignKey: "customer_id",
-    as: "customer"
-});
+
 organisation.belongsTo(user, {
     foreignKey: "user_id",
     as: "user"

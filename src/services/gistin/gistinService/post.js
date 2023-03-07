@@ -1,7 +1,6 @@
-import sequelize from '../../../models'
-
-const create = async (gistin) => sequelize.models.gistin.create(gistin)
+import GistinDetail from "../../../models/gistin";
+const create = async (gistin) => GistinDetail.create(gistin);
 
 export default {
-    create
-}
+  create,
+};

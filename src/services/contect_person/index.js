@@ -1,11 +1,11 @@
-import getContecPersonService from './contectPersonService/get'
-import postContecPersonService from './contectPersonService/post'
-import putContecPersonService from './contectPersonService/put'
-import deleteContecPersonService from './contectPersonService/delete'
+import getContactPersonService from "./contectPersonService/get";
+import postContactPersonService from "./contectPersonService/post";
+import putContactPersonService from "./contectPersonService/put";
+import deleteContactPersonService from "./contectPersonService/delete";
 
 export {
-    getContecPersonService,
-    postContecPersonService,
-    putContecPersonService,
-    deleteContecPersonService
-}
+  getContactPersonService,
+  postContactPersonService,
+  putContactPersonService,
+  deleteContactPersonService,
+};

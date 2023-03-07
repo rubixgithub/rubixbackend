@@ -1,21 +1,23 @@
-import sequelize from '../../../models'
+import ContactPerson from "../../../models/contect_person";
 
-const all = async () => sequelize.models.contect_person.findAll()
+const all = async () => ContactPerson.findAll();
 
-const byId = async (id) => sequelize.models.contect_person.findOne({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  ContactPerson.findOne({
+    where: {
+      id,
+    },
+  });
 
-const byName = async (name) => sequelize.models.contect_person.findOne({
-    where:{
-        name
-    }
-})
+const byEmail = async (email) =>
+  ContactPerson.findOne({
+    where: {
+      email,
+    },
+  });
 
 export default {
-    all,
-    byId,
-    byName,
-}
+  all,
+  byId,
+  byEmail,
+};

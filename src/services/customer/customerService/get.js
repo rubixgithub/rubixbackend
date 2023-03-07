@@ -1,21 +1,27 @@
-import sequelize from '../../../models'
+import ContactPerson from "../../../models/contect_person";
+import Customer from "../../../models/customer";
+const all = async () =>
+  Customer.findAll({
+    //include: [{ model: ContactPerson, as: "ContactPersons" }],
+    include: { all: true, },
+  });
 
-const all = async () => sequelize.models.customer.findAll()
+const byId = async (id) =>
+  Customer.findOne({
+    where: {
+      id,
+    },
+  });
 
-const byId = async (id) => sequelize.models.customer.findOne({
-    where:{
-        id
-    }
-})
-
-const byName = async (name) => sequelize.models.customer.findOne({
-    where:{
-        name
-    }
-})
+const byName = async (name) =>
+  Customer.findOne({
+    where: {
+      customerName: name,
+    },
+  });
 
 export default {
-    all,
-    byId,
-    byName,
-}
+  all,
+  byId,
+  byName,
+};

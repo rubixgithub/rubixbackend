@@ -1,11 +1,12 @@
-import sequelize from '../../../models'
+import CustomerGroup from "../../../models/customer_group";
 
-const byId = async (id) => sequelize.models.customer_group.destroy({
-    where:{
-        id
-    }
-})
+const byId = async (id) =>
+  CustomerGroup.destroy({
+    where: {
+      id,
+    },
+  });
 
 export default {
-    byId
-}
+  byId,
+};
