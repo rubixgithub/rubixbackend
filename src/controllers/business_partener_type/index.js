@@ -3,7 +3,7 @@ import {
     postBusinessPartenerTypeService,
     deleteBusinessPartenerTypeService,
     putBusinessPartenerTypeService
-} from '../../services/BusinessPartenerType'
+} from '../../services/business_partener_type'
 
 import constants from '../../constants'
 import { throwError, OK } from '../../util/helper'
@@ -35,16 +35,15 @@ const getBusinessPartenerTypeById = async (req, res) => {
 
 const createBusinessPartenerType = async (req, res) => {
     try {
-        console.log("nfjdjfjdhfj")
         const {
-            name,
-            description
+            partner_code,
+            partner_type
         } = req.body
-        const businessPartenerTypeExists = await getBusinessPartenerTypeService.byName(name);
+        const businessPartenerTypeExists = await getBusinessPartenerTypeService.byPartnerCode(partner_code);
         if(!businessPartenerTypeExists) {
         const newBusinessPartenerType = await postBusinessPartenerTypeService.create({
-            name,
-            description
+            partner_code,
+            partner_type
         })
         OK(CREATED, res, newBusinessPartenerType)
     }else{
@@ -67,12 +66,12 @@ const deleteBusinessPartenerType = async (req, res) => {
 const updateBusinessPartenerTypeById = async (req, res) => {
     try {
         const {
-            name,
-            discription
+            partner_code,
+            partner_type
         } = req.body
         const updateBusinessPartenerTypeById = await putBusinessPartenerTypeService.byId(req.params.id, {
-            name,
-            discription
+            partner_code,
+            partner_type
         })
         OK(SUCCESS, res, updateBusinessPartenerTypeById)
     } catch (e) {

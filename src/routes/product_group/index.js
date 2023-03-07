@@ -1,19 +1,15 @@
-import express from 'express'
+import express from "express";
 
-import roleValidator from "../../validators/role";
-import roleController from "../../controllers/role"
-import auth from "../../middleware/auth"
+import productGroupController from "../../controllers/product_group";
 
-const Role = express.Router()
+const ProductGroup = express.Router();
 
-export default Role
+ProductGroup.get("/", productGroupController.getProductGroup);
 
-.get('/', roleController.getRole)
+ProductGroup.post("/", productGroupController.createProductGroup);
 
-.post('/', [auth,roleValidator.createRole], roleController.createRole)
+ProductGroup.get("/:id", productGroupController.getProductGroupById);
 
-.get('/:id', roleController.getRoleById)
+ProductGroup.put("/:id", productGroupController.updateProductGroupById);
 
-// .delete('/:id', roleValidator.deleteUser, roleController.deleteRole)
-
-.put('/:id', roleValidator.updateRoleById, roleController.updateRoleById)
+export default ProductGroup;

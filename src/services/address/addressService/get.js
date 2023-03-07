@@ -9,15 +9,14 @@ const byId = async (id) =>
     },
   });
 
-const byName = async (name) =>
-  Address.findOne({
-    where: {
-      name,
-    },
-  });
+const byAttention = async (attention) => sequelize.models.address.findOne({
+    where:{
+        attention
+    }
+})
 
 export default {
-  all,
-  byId,
-  byName,
-};
+    all,
+    byId,
+    byAttention,
+}

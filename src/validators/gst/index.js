@@ -2,22 +2,30 @@ import Joi from 'joi'
 import constants from '../../constants'
 
 const {
-    MAXIMUM_LENGTH_FOR_NAME,
-    MINIMUM_LENGTH_FOR_NAME,
+    MAXIMUM_LENGTH_FOR_BUSINESS_LEGAL_NAME,
+    MINIMUM_LENGTH_FOR_BUSINESS_LEGAL_NAME,
+    MAXIMUM_LENGTH_FOR_BUSINESS_TRADE_NAME,
+    MINIMUM_LENGTH_FOR_BUSINESS_TRADE_NAME,
 } = constants
 
 import { throwError } from '../../util/helper'
 
-const createRole = async (req, res, next) => {
+const createGst = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        is_gst_registered: Joi.number()
             .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
+        gstin: Joi.number()
+            .required(),
+        business_legal_name: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_BUSINESS_LEGAL_NAME)
+            .max(MAXIMUM_LENGTH_FOR_BUSINESS_LEGAL_NAME)
+            .required(),
+        business_trade_name: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_BUSINESS_TRADE_NAME)
+            .max(MAXIMUM_LENGTH_FOR_BUSINESS_TRADE_NAME)
+            .required(),
+        GST_regestered_on: Joi.date()
+            .required(),
 
     })
     const validate = schema.validate(req.body)
@@ -31,21 +39,22 @@ const createRole = async (req, res, next) => {
     }
 }
 
-const deleteRole = async (req, res, next) => validateId(req, res, next)
+const deleteGst = async (req, res, next) => validateId(req, res, next)
 
-const getRole = async (req, res, next) => validateId(req, res, next)
+const getGst = async (req, res, next) => validateId(req, res, next)
 
 
-const updateRoleById = async (req, res, next) => {
+const updateGstById = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
+        is_gst_registered: Joi.number(),
+        gstin: Joi.number(),
+        business_legal_name: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_BUSINESS_LEGAL_NAME)
+            .max(MAXIMUM_LENGTH_FOR_BUSINESS_LEGAL_NAME),
+        business_trade_name: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_BUSINESS_TRADE_NAME)
+            .max(MAXIMUM_LENGTH_FOR_BUSINESS_TRADE_NAME),
+        GST_regestered_on: Joi.date(),
 
     })
 
@@ -75,8 +84,8 @@ const validateId = async (req , res, next) => {
 }
 
 export default {
-    createRole,
-    deleteRole,
-    updateRoleById,
-    getRole
+    createGst,
+    deleteGst,
+    updateGstById,
+    getGst
 }

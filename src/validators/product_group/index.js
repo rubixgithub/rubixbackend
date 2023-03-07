@@ -2,21 +2,23 @@ import Joi from 'joi'
 import constants from '../../constants'
 
 const {
-    MAXIMUM_LENGTH_FOR_NAME,
-    MINIMUM_LENGTH_FOR_NAME,
+    MAXIMUM_LENGTH_FOR_GROUP_NAME,
+    MINIMUM_LENGTH_FOR_GROUP_NAME,
+    MINIMUM_LENGTH_FOR_GROUP_BASIS,
+    MAXIMUM_LENGTH_FOR_GROUP_BASIS,
 } = constants
 
 import { throwError } from '../../util/helper'
 
-const createRole = async (req, res, next) => {
+const createProductGroup = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        group_name: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_GROUP_NAME)
+            .max(MAXIMUM_LENGTH_FOR_GROUP_NAME)
             .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        group_basis: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_GROUP_BASIS)
+            .max(MAXIMUM_LENGTH_FOR_GROUP_BASIS)
             .required()
 
     })
@@ -31,20 +33,20 @@ const createRole = async (req, res, next) => {
     }
 }
 
-const deleteRole = async (req, res, next) => validateId(req, res, next)
+const deleteProductGroup = async (req, res, next) => validateId(req, res, next)
 
-const getRole = async (req, res, next) => validateId(req, res, next)
+const getProductGroup = async (req, res, next) => validateId(req, res, next)
 
 
-const updateRoleById = async (req, res, next) => {
+const updateProductGroupById = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        group_name: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_GROUP_NAME)
+            .max(MAXIMUM_LENGTH_FOR_GROUP_NAME)
             .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        group_basis: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_GROUP_BASIS)
+            .max(MAXIMUM_LENGTH_FOR_GROUP_BASIS)
             .required()
 
     })
@@ -75,8 +77,8 @@ const validateId = async (req , res, next) => {
 }
 
 export default {
-    createRole,
-    deleteRole,
-    updateRoleById,
-    getRole
+    createProductGroup,
+    deleteProductGroup,
+    updateProductGroupById,
+    getProductGroup
 }

@@ -650,6 +650,78 @@
           }
         }
         
+      },
+      "/unit-of-measurement": {
+        "post": {
+          "tags": ["Unit Of Measurement"],
+          "description": "Create new unit measurement in system",
+          "summary": "Create new unit measurement in system",
+          "parameters": [
+            {
+              "name": "payload",
+              "in": "body",
+              "description": "Unit that we want to create",
+              "schema": {
+                "$ref": "#/definitions/UnitOfMeasurement"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "New unit measurement  is created",
+              "schema": {
+                "$ref": "#/definitions/UnitOfMeasurement"
+              }
+            }
+          }
+        },
+  
+        "get": {
+          "tags": ["Unit Of Measurement"],
+          "summary": "Get all unit of measurements from the system",
+          "description": "Get all unit of measurements from the system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/UnitOfMeasurements"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update Unit measurement with ID",
+          "description": "Update Unit measurement with ID",
+          "tags": ["Unit Of Measurement"],
+          "parameters": [
+            {
+              "id": "21bcf97a-f42a-41f3-9725-ae4b8cc75ed7",
+              "in": "param",
+              "description": "Id template with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/UnitOfMeasurement"
+              },
+              "required": true
+            },
+            {
+              "name": "payload",
+              "in": "body",
+              "description": "Unit ,easurement metadata that we want to update",
+              "schema": {
+                "$ref": "#/definitions/UnitOfMeasurement"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Unit measurement is updated",
+              "schema": {
+                "$ref": "#/definitions/UnitOfMeasurement"
+              }
+            }
+          }
+        }
       }
       
     },
@@ -872,6 +944,31 @@
             "uniqueItems": true
           }
         }
+      },
+      "UnitOfMeasurement": {
+        "required": ["name", "description"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["linear", "weight", "quantity", "currency"],
+            "nullable": true
+          },
+          "alias": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UnitOfMeasurements": {
+        "type": "array",
+        "$ref": "#/definitions/UnitOfMeasurement"
       }
     }
   }

@@ -6,7 +6,13 @@ const {
     MAXIMUM_LENGTH_FOR_NAME,
     MINIMUM_LENGTH_FOR_NAME,
     MINIMUM_LENGTH_FOR_PASSWORD,
-    MINIMUM_LENGTH_FOR_EMAIL
+    MINIMUM_LENGTH_FOR_EMAIL,
+
+    MINIMUM_LENGTH_FOR_LANGUAGE,
+    MAXIMUM_LENGTH_FOR_LANGUAGE,
+    MINIMUM_LENGTH_FOR_PROFILE_PICTURE,
+    MAXIMUM_LENGTH_FOR_PROFILE_PICTURE,
+
 } = constants
 
 import { throwError } from '../../util/helper'
@@ -24,12 +30,10 @@ const createUser = async (req, res, next) => {
         password: Joi.string().min(MINIMUM_LENGTH_FOR_PASSWORD),
 
         language: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+            .min(MINIMUM_LENGTH_FOR_LANGUAGE)
+            .max(MAXIMUM_LENGTH_FOR_LANGUAGE)
             .required(),
         profile_picture: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
             .required(),
         is_admin: Joi.boolean().required(),
         is_active: Joi.boolean().required(),
@@ -63,11 +67,11 @@ const updateUserById = async (req, res, next) => {
         password: Joi.string().min(6),
 
         language: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME),
+            .min(MINIMUM_LENGTH_FOR_LANGUAGE)
+            .max(MAXIMUM_LENGTH_FOR_LANGUAGE),
         profile_picture: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME),
+            .min(1)
+            .max(MAXIMUM_LENGTH_FOR_PROFILE_PICTURE),
         is_admin: Joi.boolean().required(),
         is_active: JoiJoi.boolean().required(),
 

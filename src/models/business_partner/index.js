@@ -1,9 +1,6 @@
 import { Sequelize } from "sequelize";
 
 const BusinessPartner = {
-    partner_type:  {
-        type: Sequelize.BIGINT
-    },
     partner_company_name: {
         type: Sequelize.BIGINT
     },

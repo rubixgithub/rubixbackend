@@ -3,7 +3,7 @@ import {
     postBranchService,
     deleteBranchService,
     putBranchService
-} from '../../services/Branch'
+} from '../../services/branch'
 
 import constants from '../../constants'
 import { throwError, OK } from '../../util/helper'
@@ -38,13 +38,29 @@ const createBranch = async (req, res) => {
         console.log("nfjdjfjdhfj")
         const {
             name,
-            description
+            address_1,
+            address_2,
+            state_teritory,
+            city,
+            postal_code,
+            primary_contact,
+            gstin,
+            doc_series,
+            warehouses
         } = req.body
         const branchExists = await getBranchService.byName(name);
         if(!branchExists) {
         const newBranch = await postBranchService.create({
             name,
-            description
+            address_1,
+            address_2,
+            state_teritory,
+            city,
+            postal_code,
+            primary_contact,
+            gstin,
+            doc_series,
+            warehouses
         })
         OK(CREATED, res, newBranch)
     }else{
@@ -68,11 +84,27 @@ const updateBranchById = async (req, res) => {
     try {
         const {
             name,
-            discription
+            address_1,
+            address_2,
+            state_teritory,
+            city,
+            postal_code,
+            primary_contact,
+            gstin,
+            doc_series,
+            warehouses
         } = req.body
         const updateBranchById = await putBranchService.byId(req.params.id, {
             name,
-            discription
+            address_1,
+            address_2,
+            state_teritory,
+            city,
+            postal_code,
+            primary_contact,
+            gstin,
+            doc_series,
+            warehouses
         })
         OK(SUCCESS, res, updateBranchById)
     } catch (e) {

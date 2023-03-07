@@ -2,21 +2,19 @@ import Joi from 'joi'
 import constants from '../../constants'
 
 const {
-    MAXIMUM_LENGTH_FOR_NAME,
-    MINIMUM_LENGTH_FOR_NAME,
+    MINIMUM_LENGTH_FOR_PARTNERTYPE,
+    MAXIMUM_LENGTH_FOR_PARTNERTYPE
+
 } = constants
 
 import { throwError } from '../../util/helper'
 
-const createRole = async (req, res, next) => {
+const createBusinessPartenerType = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        partner_code:Joi.number(),
+        partner_type: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_PARTNERTYPE)
+            .max(MAXIMUM_LENGTH_FOR_PARTNERTYPE)
             .required()
 
     })
@@ -31,21 +29,17 @@ const createRole = async (req, res, next) => {
     }
 }
 
-const deleteRole = async (req, res, next) => validateId(req, res, next)
+const deleteBusinessPartenerType = async (req, res, next) => validateId(req, res, next)
 
-const getRole = async (req, res, next) => validateId(req, res, next)
+const getBusinessPartenerType = async (req, res, next) => validateId(req, res, next)
 
 
-const updateRoleById = async (req, res, next) => {
+const updateBusinessPartenerTypeById = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
+        partner_code:Joi.number(),
+        partner_type: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_PARTNERTYPE)
+            .max(MAXIMUM_LENGTH_FOR_PARTNERTYPE)
 
     })
 
@@ -75,8 +69,8 @@ const validateId = async (req , res, next) => {
 }
 
 export default {
-    createRole,
-    deleteRole,
-    updateRoleById,
-    getRole
+    createBusinessPartenerType,
+    deleteBusinessPartenerType,
+    updateBusinessPartenerTypeById,
+    getBusinessPartenerType
 }

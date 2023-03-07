@@ -11,7 +11,7 @@ const UnitDivision = {
         allowNull: false,
         max: 45
     },
-    Gstin:{
+    gstin:{
         type: Sequelize.BIGINT
     },
     registered_name:{
