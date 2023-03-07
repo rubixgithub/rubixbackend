@@ -25,6 +25,6 @@ const GistinDetail = sequelize.define("gistin_detail", {
 export default GistinDetail;
 
 
-Customer.hasOne(GistinDetail);
+// Customer.hasOne(GistinDetail);
 
-GistinDetail.belongsTo(Customer);
+// GistinDetail.belongsTo(Customer);

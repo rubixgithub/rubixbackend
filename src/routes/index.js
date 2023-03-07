@@ -9,7 +9,6 @@ import Address from "./address";
 import Gistin from "./gistin";
 import ContactPerson from "./contect_person";
 import Customer from "./customer";
-import Address from "./address";
 import Branch from "./branch";
 import BusinessPartnerType from "./business_partener_type";
 import UnitOfMeasurement from "./unit_of_measurement";
