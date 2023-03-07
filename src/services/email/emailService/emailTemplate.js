@@ -1,5 +1,5 @@
 import getEmailService from './get'
-import getUserService from '../../user/get'
+import getUserService from '../../user'
 
 
 const strReplace =  async(findArray, replaceArray, str) =>{

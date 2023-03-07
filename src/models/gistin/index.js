@@ -1,30 +1,33 @@
 import { Sequelize } from "sequelize";
 import sequelize from "../../config";
-import Customer from "../customer";
 
-const GistinDetail = sequelize.define("gistin_detail", {
-  id: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
-    primaryKey: true,
-    allowNull: false,
-  },
-  gistin: {
-    type: Sequelize.BIGINT,
-  },
-  state: {
-    type: Sequelize.BIGINT,
-  },
-  address: {
-    type: Sequelize.STRING(45),
-    allowNull: false,
-    max: 45,
-  },
+const Gistin = sequelize.define("tb_gistin", {
+    id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        allowNull: false,
+    },
+    gistinNo: {
+        type: Sequelize.BIGINT
+    },
+    gstinState: {
+        type: Sequelize.STRING(45)
+    },
+    businessLegalName: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        max: 45
+    },
+    businessTradeName: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        max: 45
+    },
+    gstRegisteredOn: {
+        type: Sequelize.DATE,
+        allowNull: false
+    }
 });
 
-export default GistinDetail;
-
-
-// Customer.hasOne(GistinDetail);
-
-// GistinDetail.belongsTo(Customer);
+export default Gistin;

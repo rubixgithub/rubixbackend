@@ -1,27 +1,34 @@
 import { Sequelize } from "sequelize";
+import sequelize from "../../config";
 
-const Access = {
+const Access = sequelize.define("tb_access", {
+    id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        allowNull: false
+    },
     name: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
+        unique: true
     },
-    view: {
+    allowView: {
         type: Sequelize.BIGINT,
         allowNull: false
     },
-    create: {
+    allowCreate: {
         type: Sequelize.BOOLEAN,
         allowNull: false
     },
-    edit: {
+    allowEdit: {
         type: Sequelize.BOOLEAN,
         allowNull: false
     },
-    isdelete: {
+    allowDelete: {
         type: Sequelize.BOOLEAN,
         allowNull: false
     }
-}
+});
 
-export default Access
+export default Access;
