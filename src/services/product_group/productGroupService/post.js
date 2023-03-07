@@ -1,7 +1,7 @@
-import sequelize from '../../../models'
+import { ProductGroup } from "../../../models";
 
-const create = async (product_group) => sequelize.models.product_group.create(product_group)
+const create = async (product_group) => ProductGroup.create(product_group);
 
 export default {
     create
-}
+};

@@ -4,12 +4,12 @@ const ContectPerson = {
     salutation: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
     },
     first_name: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        max: 45
+        max: 45,
+        unique:true
     },
     last_name:{
         type: Sequelize.STRING(45),

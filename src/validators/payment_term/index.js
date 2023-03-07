@@ -2,22 +2,22 @@ import Joi from 'joi'
 import constants from '../../constants'
 
 const {
-    MAXIMUM_LENGTH_FOR_NAME,
-    MINIMUM_LENGTH_FOR_NAME,
+    MAXIMUM_LENGTH_FOR_DAYS,
+    MINIMUM_LENGTH_FOR_DAYS,
 } = constants
 
 import { throwError } from '../../util/helper'
 
-const createRole = async (req, res, next) => {
+const createPaymentTerm = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        document_type: Joi.number()
             .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
+        term: Joi.number()
+            .required(),
+        days: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_DAYS)
+            .max(MAXIMUM_LENGTH_FOR_DAYS)
+            .required(),
 
     })
     const validate = schema.validate(req.body)
@@ -31,21 +31,18 @@ const createRole = async (req, res, next) => {
     }
 }
 
-const deleteRole = async (req, res, next) => validateId(req, res, next)
+const deletePaymentTerm = async (req, res, next) => validateId(req, res, next)
 
-const getRole = async (req, res, next) => validateId(req, res, next)
+const getPaymentTerm = async (req, res, next) => validateId(req, res, next)
 
 
-const updateRoleById = async (req, res, next) => {
+const updatePaymentTermById = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
+        document_type: Joi.number(),
+        term: Joi.number(),
+        days: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_DAYS)
+            .max(MAXIMUM_LENGTH_FOR_DAYS),
 
     })
 
@@ -75,8 +72,8 @@ const validateId = async (req , res, next) => {
 }
 
 export default {
-    createRole,
-    deleteRole,
-    updateRoleById,
-    getRole
+    createPaymentTerm,
+    deletePaymentTerm,
+    updatePaymentTermById,
+    getPaymentTerm
 }

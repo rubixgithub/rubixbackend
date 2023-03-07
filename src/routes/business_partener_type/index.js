@@ -1,19 +1,19 @@
 import express from 'express'
 
-import roleValidator from "../../validators/role";
-import roleController from "../../controllers/role"
+import businessPartenerTypeValidator from "../../validators/business_partener_type";
+import businessPartenerTypeController from "../../controllers/business_partener_type"
 import auth from "../../middleware/auth"
 
-const Role = express.Router()
+const BusinessPartnerType = express.Router()
 
-export default Role
+export default BusinessPartnerType
 
-.get('/', roleController.getRole)
+.get('/', businessPartenerTypeController.getBusinessPartenerType)
 
-.post('/', [auth,roleValidator.createRole], roleController.createRole)
+.post('/', [auth,businessPartenerTypeValidator.createBusinessPartenerType], businessPartenerTypeController.createBusinessPartenerType)
 
-.get('/:id', roleController.getRoleById)
+.get('/:id', businessPartenerTypeController.getBusinessPartenerType)
 
-// .delete('/:id', roleValidator.deleteUser, roleController.deleteRole)
+// .delete('/:id', businessPartenerTypeValidator.deleteUser, businessPartenerTypeController.deleteBusinessPartenerType)
 
-.put('/:id', roleValidator.updateRoleById, roleController.updateRoleById)
+// .put('/:id', businessPartenerTypeValidator.updateRoleById, businessPartenerTypeController.updateBusinessPartenerTypeById)

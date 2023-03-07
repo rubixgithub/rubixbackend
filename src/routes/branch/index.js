@@ -10,10 +10,10 @@ export default branch
 
 .get('/', branchController.getBranch)
 
-.post('/', [auth,branchValidator.createbranch], branchController.createBranch)
+.post('/', [auth,branchValidator.createBranch], branchController.createBranch)
 
 .get('/:id', branchController.getBranchById)
 
 // .delete('/:id', branchValidator.deleteUser, branchController.deleteBranch)
 
-.put('/:id', branchValidator.updatebranchById, branchController.updateBranchById)
+.put('/:id', branchValidator.updateBranchById, branchController.updateBranchById)

@@ -37,14 +37,46 @@ const createBusinessPartener = async (req, res) => {
     try {
         console.log("nfjdjfjdhfj")
         const {
-            name,
-            description
+            partner_type,
+            partner_company_name,
+            partner_contact_person,
+            contact_number,
+            email_id,
+            address_1,
+            address_2,
+            city,
+            country,
+            website,
+            bank_name,
+            bank_branch,
+            bank_account_no,
+            ifsc_code,
+            swift_code,
+            ad_code,
+            submission_branch,
+            bank_address
         } = req.body
-        const businessPartenerExists = await getBusinessPartenerService.byName(name);
+        const businessPartenerExists = await getBusinessPartenerService.byParternerCOmpanyName(partner_company_name);
         if(!businessPartenerExists) {
         const newBusinessPartener = await postBusinessPartenerService.create({
-            name,
-            description
+            partner_company_name,
+            partner_contact_person,
+            contact_number,
+            email_id,
+            address_1,
+            address_2,
+            city,
+            country,
+            website,
+            bank_name,
+            bank_branch,
+            bank_account_no,
+            ifsc_code,
+            swift_code,
+            ad_code,
+            submission_branch,
+            bank_address,
+            partner_type
         })
         OK(CREATED, res, newBusinessPartener)
     }else{
@@ -67,12 +99,44 @@ const deleteBusinessPartener = async (req, res) => {
 const updateBusinessPartenerById = async (req, res) => {
     try {
         const {
-            name,
-            discription
+            partner_type,
+            partner_company_name,
+            partner_contact_person,
+            contact_number,
+            email_id,
+            address_1,
+            address_2,
+            city,
+            country,
+            website,
+            bank_name,
+            bank_branch,
+            bank_account_no,
+            ifsc_code,
+            swift_code,
+            ad_code,
+            submission_branch,
+            bank_address
         } = req.body
         const updateBusinessPartenerById = await putBusinessPartenerService.byId(req.params.id, {
-            name,
-            discription
+            partner_type,
+            partner_company_name,
+            partner_contact_person,
+            contact_number,
+            email_id,
+            address_1,
+            address_2,
+            city,
+            country,
+            website,
+            bank_name,
+            bank_branch,
+            bank_account_no,
+            ifsc_code,
+            swift_code,
+            ad_code,
+            submission_branch,
+            bank_address
         })
         OK(SUCCESS, res, updateBusinessPartenerById)
     } catch (e) {

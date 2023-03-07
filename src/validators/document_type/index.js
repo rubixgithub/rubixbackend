@@ -2,21 +2,23 @@ import Joi from 'joi'
 import constants from '../../constants'
 
 const {
-    MAXIMUM_LENGTH_FOR_NAME,
-    MINIMUM_LENGTH_FOR_NAME,
+    MAXIMUM_LENGTH_FOR_DOCTYPE,
+    MINIMUM_LENGTH_FOR_DOCTYPE,
+    MAXIMUM_LENGTH_FOR_DESCRIPTION,
+    MINIMUM_LENGTH_FOR_DESCRIPTION,
 } = constants
 
 import { throwError } from '../../util/helper'
 
-const createRole = async (req, res, next) => {
+const createDocumentType = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+        doc_type: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_DOCTYPE)
+            .max(MAXIMUM_LENGTH_FOR_DOCTYPE)
             .required(),
         description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
+            .min(MINIMUM_LENGTH_FOR_DESCRIPTION)
+            .max(MAXIMUM_LENGTH_FOR_DESCRIPTION)
             .required()
 
     })
@@ -31,21 +33,19 @@ const createRole = async (req, res, next) => {
     }
 }
 
-const deleteRole = async (req, res, next) => validateId(req, res, next)
+const deleteDocumentType = async (req, res, next) => validateId(req, res, next)
 
-const getRole = async (req, res, next) => validateId(req, res, next)
+const getDocumentType = async (req, res, next) => validateId(req, res, next)
 
 
-const updateRoleById = async (req, res, next) => {
+const updateDocumentTypeById = async (req, res, next) => {
     const schema = Joi.object({
-        name: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required(),
+        doc_type: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_DOCTYPE)
+            .max(MAXIMUM_LENGTH_FOR_DOCTYPE),
         description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
+            .min(MINIMUM_LENGTH_FOR_DESCRIPTION)
+            .max(MAXIMUM_LENGTH_FOR_DESCRIPTION)
 
     })
 
@@ -75,8 +75,8 @@ const validateId = async (req , res, next) => {
 }
 
 export default {
-    createRole,
-    deleteRole,
-    updateRoleById,
-    getRole
+    createDocumentType,
+    deleteDocumentType,
+    updateDocumentTypeById,
+    getDocumentType
 }

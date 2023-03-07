@@ -4,21 +4,30 @@ import constants from '../../constants'
 const {
     MAXIMUM_LENGTH_FOR_NAME,
     MINIMUM_LENGTH_FOR_NAME,
+    MAXIMUM_LENGTH_FOR_ADDRESS,
+    MINIMUM_LENGTH_FOR_ADDRESS,
 } = constants
 
 import { throwError } from '../../util/helper'
 
-const createRole = async (req, res, next) => {
+const createUnitDivision = async (req, res, next) => {
     const schema = Joi.object({
         name: Joi.string()
             .min(MINIMUM_LENGTH_FOR_NAME)
             .max(MAXIMUM_LENGTH_FOR_NAME)
             .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
-
+        address: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ADDRESS)
+            .max(MAXIMUM_LENGTH_FOR_ADDRESS)
+            .required(),
+        gstin:Joi.number()
+            .required(),
+        registered_name:Joi.number()
+            .required(),
+        currency:Joi.number()
+            .required(),
+        department_id:Joi.number()
+            .required(),
     })
     const validate = schema.validate(req.body)
 
@@ -31,22 +40,23 @@ const createRole = async (req, res, next) => {
     }
 }
 
-const deleteRole = async (req, res, next) => validateId(req, res, next)
+const deleteUnitDivision = async (req, res, next) => validateId(req, res, next)
 
-const getRole = async (req, res, next) => validateId(req, res, next)
+const getUnitDivision = async (req, res, next) => validateId(req, res, next)
 
 
-const updateRoleById = async (req, res, next) => {
+const updateUnitDivisionById = async (req, res, next) => {
     const schema = Joi.object({
         name: Joi.string()
             .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required(),
-        description: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_NAME)
-            .max(MAXIMUM_LENGTH_FOR_NAME)
-            .required()
-
+            .max(MAXIMUM_LENGTH_FOR_NAME),
+        address: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ADDRESS)
+            .max(MAXIMUM_LENGTH_FOR_ADDRESS),
+        gstin:Joi.number(),
+        registered_name:Joi.number(),
+        currency:Joi.number(),
+        department_id:Joi.number(),
     })
 
     const validate = schema.validate(req.body)
@@ -75,8 +85,8 @@ const validateId = async (req , res, next) => {
 }
 
 export default {
-    createRole,
-    deleteRole,
-    updateRoleById,
-    getRole
+    createUnitDivision,
+    deleteUnitDivision,
+    updateUnitDivisionById,
+    getUnitDivision
 }
