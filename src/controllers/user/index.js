@@ -7,7 +7,7 @@ import {
 import { JsonWebToken } from "../../util/jwtHelper";
 import constants from "../../constants";
 import { throwError, OK } from "../../util/helper";
-import { encrypt } from "../../util/encryptionHelper";
+import { compare, encrypt } from "../../util/encryptionHelper";
 import { getRoleService } from "../../services/role";
 
 const {
@@ -58,15 +58,22 @@ const loginUser = async (req, res) => {
         if (!user) {
             OK(NOT_FOUND, res, { message: EMAIL_NOT_EXISTS });
         }
-        const isMached = (password, user.dataValues.password) ? true : false;
+        const isMached = compare(password, user.password) ? true : false;
         if (isMached) {
-            const token = await autheticateService.generateJwtToken(user);
-            user["token"] = token;
-            const responseArr = {
-                user: user,
-                token: token
+            const jwtUtil = new JsonWebToken("secret");
+            const accessToken = jwtUtil.generate(
+                { id: user.id, organization_id: "newOrganisation.id" },
+                constants.TOKEN_LIFETIME_IN_SECONDS
+            );
+            const refreshToken = jwtUtil.generate(
+                { id: user.id, organization_id: "newOrganisation.id" },
+                constants.REFRESH_LINK_LIFETIME_IN_SECONDS
+            );
+            const result = {
+                accessToken,
+                refreshToken
             };
-            OK(SUCCESS, res, responseArr);
+            OK(SUCCESS, res, { data: result });
         } else {
             OK(EXTECTATION_FAILED, res, { message: PASSWORD_NOT_MACHED });
         }
