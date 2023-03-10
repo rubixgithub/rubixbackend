@@ -1,6 +1,6 @@
-import Organization from "../../../models/organisation";
+import User from "../../../models/user";
 const byId = async (id) =>
-    Organization.destroy({
+    User.destroy({
         where: {
             id
         }

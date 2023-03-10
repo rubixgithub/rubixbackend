@@ -1,5 +1,5 @@
-import Joi from 'joi'
-import constants from '../../constants'
+import Joi from "joi";
+import constants from "../../constants";
 
 const {
     MAXIMUM_LENGTH_FOR_EMAIL,
@@ -28,11 +28,9 @@ const {
     MINIMUM_LENGTH_FOR_CONTECTNO,
     MINIMUM_LENGTH_FOR_COUNTRYID,
     MAXIMUM_LENGTH_FOR_COUNTRYID
+} = constants;
 
-
-} = constants
-
-import { throwError } from '../../util/helper'
+import { throwError } from "../../util/helper";
 
 const createOrganisation = async (req, res, next) => {
     const schema = Joi.object({
@@ -48,7 +46,7 @@ const createOrganisation = async (req, res, next) => {
             .min(MINIMUM_LENGTH_FOR_INDUSTRY)
             .max(MAXIMUM_LENGTH_FOR_INDUSTRY)
             .required(),
-        country_id:Joi.string()
+        country_id: Joi.string()
             .min(MINIMUM_LENGTH_FOR_COUNTRYID)
             .max(MAXIMUM_LENGTH_FOR_COUNTRYID)
             .required(),
@@ -68,116 +66,176 @@ const createOrganisation = async (req, res, next) => {
             .min(MINIMUM_LENGTH_FOR_CITY)
             .max(MAXIMUM_LENGTH_FOR_CITY)
             .required(),
-        postal_code: Joi.number()
-            .required(),
-        iec: Joi.number()
-            .required(),
+        postal_code: Joi.number().required(),
+        iec: Joi.number().required(),
         org_currency: Joi.string()
             .min(MINIMUM_LENGTH_FOR_ORGCURRENCY)
             .max(MAXIMUM_LENGTH_FOR_ORGCURRENCY)
             .required(),
-        inventory_start_date:Joi.date()
-            .required(),
-        fiscal_year: Joi.number()
-            .required(),
-        contact_no: Joi.number()
-                .required(),
+        inventory_start_date: Joi.date().required(),
+        fiscal_year: Joi.number().required(),
+        contact_no: Joi.number().required(),
         email: Joi.string()
             .min(MINIMUM_LENGTH_FOR_EMAIL)
             .max(MAXIMUM_LENGTH_FOR_EMAIL)
             .email(),
-            default_org_flag:Joi.boolean(),
+        default_org_flag: Joi.boolean(),
         is_gst: Joi.boolean()
+    });
 
-    })
-
-    const validate = schema.validate(req.body)
+    const validate = schema.validate(req.body);
 
     if (validate && validate.error) {
         throwError(res, {
             error: validate.error
-        })
+        });
     } else if (validate && validate.value) {
-        await next()
+        await next();
     }
-}
+};
 
-const deleteOrganisation = async (req, res, next) => validateId(req, res, next)
+const setupOrganisation = async (req, res, next) => {
+    const schema = Joi.object({
+        name: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_NAME)
+            .max(MAXIMUM_LENGTH_FOR_NAME)
+            .required(),
+        logo: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_LOGO)
+            .max(MAXIMUM_LENGTH_FOR_LOGO),
+        industry: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_INDUSTRY)
+            .max(MAXIMUM_LENGTH_FOR_INDUSTRY)
+            .required(),
+        countryId: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_COUNTRYID)
+            .max(MAXIMUM_LENGTH_FOR_COUNTRYID)
+            .required(),
+        stateTeritory: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_STATETERIYORY)
+            .max(MAXIMUM_LENGTH_FOR_STATETERIYORY)
+            .required(),
+        address_1: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ADDRESS)
+            .max(MAXIMUM_LENGTH_FOR_ADDRESS),
+        address_2: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ADDRESS)
+            .max(MINIMUM_LENGTH_FOR_ADDRESS),
+        city: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_CITY)
+            .max(MAXIMUM_LENGTH_FOR_CITY)
+            .required(),
+        postalCode: Joi.number().required(),
+        orgCurrency: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ORGCURRENCY)
+            .max(MAXIMUM_LENGTH_FOR_ORGCURRENCY)
+            .required(),
+        fiscalYear: Joi.number().required(),
+        contactNumber: Joi.number(),
+        email: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_EMAIL)
+            .max(MAXIMUM_LENGTH_FOR_EMAIL)
+            .email()
+    });
 
-const getOrganisation = async (req, res, next) => validateId(req, res, next)
+    const validate = schema.validate(req.body);
+    const headerSchema = Joi.object()
+        .keys({
+            "jwt-token": Joi.string().required()
+        })
+        .options({ allowUnknown: true });
 
+    const validateHeader = headerSchema.validate(req.headers);
+
+    if (validate && validate.error) {
+        throwError(res, {
+            error: validate.error
+        });
+    } else if (validate && validate.value) {
+        if (validateHeader && validateHeader.error) {
+            console.log(validateHeader.error);
+            throwError(res, {
+                error: `Please provide jwt-token key with token in header`
+            });
+        } else if (validateHeader && validateHeader.value) {
+            await next();
+        }
+    }
+};
+
+const deleteOrganisation = async (req, res, next) => validateId(req, res, next);
+
+const getOrganisation = async (req, res, next) => validateId(req, res, next);
 
 const updateOrganisationById = async (req, res, next) => {
     const schema = Joi.object({
         logo: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_LOGO)
-        .max(MAXIMUM_LENGTH_FOR_LOGO),
-    industry: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_INDUSTRY)
-        .max(MAXIMUM_LENGTH_FOR_INDUSTRY),
-    state_teritory: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_STATETERIYORY)
-        .max(MAXIMUM_LENGTH_FOR_STATETERIYORY),
-    address_1: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_ADDRESS)
-        .max(MAXIMUM_LENGTH_FOR_ADDRESS),
-    address_2: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_ADDRESS)
-        .max(MINIMUM_LENGTH_FOR_ADDRESS),
-    city: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_CITY)
-        .max(MAXIMUM_LENGTH_FOR_CITY),
-    postal_code: Joi.number()
-        .min(MINIMUM_LENGTH_FOR_POSTALCODE)
-        .max(MAXIMUM_LENGTH_FOR_POSTALCODE),
-    iec: Joi.number()
-        .min(MINIMUM_LENGTH_FOR_IEC)
-        .max(MAXIMUM_LENGTH_FOR_IEC),
-    org_currency: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_ORGCURRENCY)
-        .max(MAXIMUM_LENGTH_FOR_ORGCURRENCY),
-    fiscal_year: Joi.number()
-        .min(MINIMUM_LENGTH_FOR_FISCALYEAR)
-        .max(MAXIMUM_LENGTH_FOR_FISCALYEAR),
-    contact_no: Joi.number()
+            .min(MINIMUM_LENGTH_FOR_LOGO)
+            .max(MAXIMUM_LENGTH_FOR_LOGO),
+        industry: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_INDUSTRY)
+            .max(MAXIMUM_LENGTH_FOR_INDUSTRY),
+        state_teritory: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_STATETERIYORY)
+            .max(MAXIMUM_LENGTH_FOR_STATETERIYORY),
+        address_1: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ADDRESS)
+            .max(MAXIMUM_LENGTH_FOR_ADDRESS),
+        address_2: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ADDRESS)
+            .max(MINIMUM_LENGTH_FOR_ADDRESS),
+        city: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_CITY)
+            .max(MAXIMUM_LENGTH_FOR_CITY),
+        postal_code: Joi.number()
+            .min(MINIMUM_LENGTH_FOR_POSTALCODE)
+            .max(MAXIMUM_LENGTH_FOR_POSTALCODE),
+        iec: Joi.number()
+            .min(MINIMUM_LENGTH_FOR_IEC)
+            .max(MAXIMUM_LENGTH_FOR_IEC),
+        org_currency: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_ORGCURRENCY)
+            .max(MAXIMUM_LENGTH_FOR_ORGCURRENCY),
+        fiscal_year: Joi.number()
+            .min(MINIMUM_LENGTH_FOR_FISCALYEAR)
+            .max(MAXIMUM_LENGTH_FOR_FISCALYEAR),
+        contact_no: Joi.number()
             .min(MINIMUM_LENGTH_FOR_CONTECTNO)
             .max(MAXIMUM_LENGTH_FOR_CONTECTNO),
-    email: Joi.string()
-        .min(MINIMUM_LENGTH_FOR_EMAIL)
-        .max(MAXIMUM_LENGTH_FOR_EMAIL),
-        default_org_flag:Joi.boolean(),
-    is_gst: Joi.boolean()
+        email: Joi.string()
+            .min(MINIMUM_LENGTH_FOR_EMAIL)
+            .max(MAXIMUM_LENGTH_FOR_EMAIL),
+        default_org_flag: Joi.boolean(),
+        is_gst: Joi.boolean()
+    });
 
-    })
-
-    const validate = schema.validate(req.body)
+    const validate = schema.validate(req.body);
 
     if (validate && validate.error) {
         throwError(res, {
             error: validate.error
-        })
+        });
     } else if (validate && validate.value) {
-        await validateId(req, res, next)
+        await validateId(req, res, next);
     }
-}
+};
 
-const validateId = async (req , res, next) => {
-    const validateParams = Joi.number().required().validate(req.params.id)
+const validateId = async (req, res, next) => {
+    const validateParams = Joi.number().required().validate(req.params.id);
 
     if (validateParams && validateParams.error) {
         throwError(res, {
             error: validateParams.error
-        })
-    } 
-    
-    else if (validateParams && validateParams.value) {
-        await next()
+        });
+    } else if (validateParams && validateParams.value) {
+        await next();
     }
-}
+};
 
 export default {
     createOrganisation,
     deleteOrganisation,
     updateOrganisationById,
-    getOrganisation
-}
+    getOrganisation,
+    setupOrganisation
+};

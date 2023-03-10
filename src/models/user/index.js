@@ -1,10 +1,18 @@
 import { Sequelize } from "sequelize";
+import sequelize from "../../config";
+import OrganizationUser from "../organisation_user";
+import { encrypt } from "../../util/encryptionHelper";
 
-const User = {
+const User = sequelize.define("tb_user", {
+    id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        allowNull: false
+    },
     username: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
+        type: Sequelize.STRING,
+        allowNull: false
     },
     email: {
         type: Sequelize.STRING(45),
@@ -16,7 +24,6 @@ const User = {
     password: {
         type: Sequelize.STRING(255),
         allowNull: false,
-        unique: true,
         max: 255,
         is: /^[0-9a-f]{64}$/i
     },
@@ -24,28 +31,29 @@ const User = {
         type: Sequelize.STRING,
         allowNull: false
     },
-    profile_picture: {
-        type: Sequelize.STRING,
+    isAdmin: {
+        type: Sequelize.BOOLEAN,
+        default: false
+    },
+    mobileNumber: {
+        type: Sequelize.STRING(15),
         allowNull: true
-    },
-    is_admin: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-    },
-    is_active: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-    },
-    role_id:{
-        type: Sequelize.STRING,
-        allowNull: true,
-        max: 1000
-    },
-    permission_id:{
-        type: Sequelize.STRING,
-        allowNull: true,
-        max: 1000
     }
-}
+});
 
-export default User
+export default User;
+
+User.hasMany(OrganizationUser, {
+    foreignKey: "userId",
+    as: "Organizations"
+});
+
+OrganizationUser.belongsTo(User, {
+    foreignKey: "userId",
+    as: "User"
+});
+
+User.beforeCreate(async (User, options) => {
+    let hashedPassword = await encrypt(User.password);
+    User.password = hashedPassword;
+});

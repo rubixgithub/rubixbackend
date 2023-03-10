@@ -8,9 +8,11 @@ const Organisation = express.Router()
 
 export default Organisation
 
-.get('/', auth,organisationController.getOrganisation)
+.get('/',organisationController.getOrganisation)
 
 .post('/', [auth,organisationValidator.createOrganisation], organisationController.createOrganisation)
+
+.post('/setup', organisationValidator.setupOrganisation, organisationController.setUpOrganisation)
 
 .get('/:id', auth,organisationController.getOrganisation)
 

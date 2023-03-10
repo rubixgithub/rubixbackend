@@ -3,7 +3,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../../swagger.json";
 import Access from "./access";
 import Role from "./role";
-import Organisation from "./organisation";
+import Organization from "./organization";
 import CustomerGroup from "./customer_group";
 import Address from "./address";
 import Gistin from "./gistin";
@@ -15,12 +15,14 @@ import UnitOfMeasurement from "./unit_of_measurement";
 import Manufacturer from "./manufacturer";
 import ProductGroup from "./product_group";
 import Product from "./product";
+import OrganizationUser from "./organization_user";
 
 const routes = (app) => {
   app.use("/users", User);
   app.use("/role", Role);
   app.use("/access", Access);
-  app.use("/organisation", Organisation);
+  app.use("/organization", Organization);
+  app.use("/organization-user", OrganizationUser);
   app.use("/customer-group", CustomerGroup);
   app.use("/address", Address);
   app.use("/gistin", Gistin);

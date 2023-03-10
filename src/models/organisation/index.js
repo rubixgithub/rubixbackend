@@ -1,87 +1,81 @@
-import { Sequelize } from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
+import sequelize from "../../config";
 
-const Organisation = {
+const Organization = sequelize.define("tb_organization", {
+    id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+        allowNull: false
+    },
     name: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
+        unique: true
     },
     logo: {
         type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:true
+        allowNull: true
     },
     industry: {
         type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:false
+        allowNull: true
     },
-    country_id: {
+    countryId: {
+        type: Sequelize.STRING(45),
+        allowNull: false
+    },
+    stateTeritory: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
+        unique: false
     },
-    state_teritory:{
+    address1: {
         type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:false
+        allowNull: true,
+        unique: false
     },
-    address_1:{
+    address2: {
         type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:false
-    },
-    address_2: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:false
+        allowNull: true,
+        unique: false
     },
     city: {
         type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:false
+        allowNull: true
     },
-    postal_code: {
+    postalCode: {
+        type: Sequelize.BIGINT,
+        allowNull: true
+    },
+    orgCurrency: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
+        unique: false
     },
-    iec: {
+    fiscalYear: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        unique:false
+        unique: false
     },
-    org_currency: {
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        unique:false
-    },
-    inventory_start_date:{
-        type: Sequelize.DATE,
-        allowNull: false,
-        unique:false
-    },
-    fiscal_year: {
+    contactNo: {
         type: Sequelize.BIGINT,
-        allowNull: false,
-        unique:false
+        allowNull: true
     },
-    contact_no: {
+    landlineNo: {
         type: Sequelize.BIGINT,
-        allowNull: false,
-        unique:true
+        allowNull: true
     },
     email: {
         type: Sequelize.STRING(50),
-        allowNull: false,
-        unique:true
+        allowNull: true,
+        unique: true,
+        isEmail: true
     },
-    default_org_flag: {
-        type: Sequelize.BOOLEAN
-    },
-    is_gst:{
-        type: Sequelize.BOOLEAN
-    },
-}
+    status: {
+        type: DataTypes.ENUM("pending", "completed"),
+        defaultValue: "pending"
+    }
+});
 
-export default Organisation
+export default Organization;

@@ -1,21 +1,22 @@
-import sequelize from '../../../models'
+import Organization from "../../../models/organisation";
+const all = async () => Organization.findAll();
 
-const all = async () => sequelize.models.organisation.findAll()
+const byId = async (id) =>
+    Organization.findOne({
+        where: {
+            id
+        }
+    });
 
-const byId = async (id) => sequelize.models.organisation.findOne({
-    where:{
-        id
-    }
-})
-
-const byName = async (name) => sequelize.models.organisation.findOne({
-    where:{
-        name
-    }
-})
+const byName = async (name) =>
+    Organization.findOne({
+        where: {
+            name
+        }
+    });
 
 export default {
     all,
     byId,
     byName
-}
+};

@@ -1,4 +1,4 @@
-import errorCodes from "./errorCodes";
+import httpCodes from "./httpCodes";
 import errorMessages from "./errorMessages";
 
 const ports = {
@@ -296,6 +296,12 @@ const limiters = {
 const successMessages = {
     USER_IS_DELETED: `User is Deleted`,
     USER_IS_UPDATED: `User is Updated`,
+
+    ORGANIZATION_USER_ALREADY_EXISTS: `Organization user is already exists`,
+    ORGANIZATION_USER_IS_DELETED: `Organization user is decline`,
+    ORGANIZATION_USER_IS_UPDATED: `Organization user is updated`,
+    ORGANIZATION_USER_IS_NOT_EXISTS: `Organization user is not exists`,
+
     ACCESS_ALREADY_EXISTS: `Access all ready exists`,
     ACCESS_IS_DELETED: `Access is decline`,
     ACCESS_IS_NOT_EXISTS: `Access is not exists`,
@@ -417,10 +423,16 @@ const successMessages = {
     GWEARHOUSE_IS_NOT_EXISTS: `Wearhouse is not exists`
 };
 
+const timeSetup = {
+    TOKEN_LIFETIME_IN_SECONDS: 24 * 60 * 60 * 2,
+    REFRESH_LINK_LIFETIME_IN_SECONDS: 24 * 60 * 60 * 10
+};
+
 export default {
     ...ports,
     ...limiters,
-    ...errorCodes,
+    ...httpCodes,
     ...errorMessages,
-    ...successMessages
+    ...successMessages,
+    ...timeSetup
 };

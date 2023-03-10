@@ -1,7 +1,6 @@
-import sequelize from '../../../models'
-
-const create = async (organisation) =>  sequelize.models.organisation.create(organisation)
+import Organization from "../../../models/organisation";
+const create = async (organisation) => Organization.create(organisation);
 
 export default {
     create
-}
+};
