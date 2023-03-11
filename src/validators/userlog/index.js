@@ -20,8 +20,6 @@ const {
     MINIMUM_LENGTH_FOR_LOG_DATE,
     MAXIMUM_LENGTH_FOR_NAME,
     MINIMUM_LENGTH_FOR_NAME,
-    MAXIMUM_LENGTH_FOR_NAME,
-    MINIMUM_LENGTH_FOR_NAME,
 } = constants
 
 import { throwError } from '../../util/helper'
