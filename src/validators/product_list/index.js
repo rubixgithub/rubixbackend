@@ -28,7 +28,7 @@ const createProductList = async (req, res, next) => {
                 .min(MINIMUM_LENGTH_FOR_UNIT_OF_MEASUREMENT)
                 .max(MAXIMUM_LENGTH_FOR_UNIT_OF_MEASUREMENT)
                 .required(),
-        price: Joi.number(),
+        price: Joi.number()
                 .required(),
         one_pack_quantity: Joi.string()
                 .min(MINIMUM_LENGTH_FOR_ONE_PACK_QUANTITY)
@@ -70,7 +70,7 @@ const getProductList = async (req, res, next) => validateId(req, res, next)
 
 const updateProductListById = async (req, res, next) => {
     const schema = Joi.object({
-        contract_id: Joi.number(),,
+        contract_id: Joi.number(),
         quantity:Joi.number(),
         unit_of_measurement: Joi.string()
                 .min(MINIMUM_LENGTH_FOR_UNIT_OF_MEASUREMENT)
