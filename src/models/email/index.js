@@ -1,37 +1,37 @@
 import { Sequelize } from "sequelize";
-
-const Email = {
-    temp_id: {
+import sequelize from "../../initializers";
+const Email = sequelize.define("tb_email", {
+    tempId: {
         type: Sequelize.BIGINT
     },
-    slug_name: {
+    slugName: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    lang:{
+    lang: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    internal_name:{
+    internalName: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    templ_name:{
+    templName: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    status:{
+    status: {
         type: Sequelize.BIGINT
     },
-    content:{
+    content: {
         type: Sequelize.STRING(1000),
         allowNull: false,
         max: 45
     }
-}
+});
 
-export default Email
+export default Email;

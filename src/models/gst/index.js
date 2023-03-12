@@ -1,25 +1,25 @@
 import { Sequelize } from "sequelize";
-
-const Gst = {
-    is_gst_registered: {
+import sequelize from "../../initializers";
+const Gst = sequelize.define("tb_gst", {
+    isGstRegistered: {
         type: Sequelize.BIGINT
     },
     gstin: {
         type: Sequelize.BIGINT
     },
-    business_legal_name:{
+    businessLegalName: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    business_trade_name:{
+    businessTradeName: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    GST_regestered_on:{
-        type: Sequelize.DATE	
-    },
-}
+    gstRegesteredOn: {
+        type: Sequelize.DATE
+    }
+});
 
-export default Gst
+export default Gst;

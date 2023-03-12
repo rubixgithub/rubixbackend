@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 
 const Access = sequelize.define("tb_access", {
     id: {

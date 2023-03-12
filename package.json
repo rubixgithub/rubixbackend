@@ -6,8 +6,10 @@
         "server": "babel-node --presets @babel/preset-env ./src/app.js",
         "start:linux": "export NODE_ENV=development && nodemon --exec babel-node --presets @babel/preset-env app.js",
         "test": "mocha --require @babel/register || true",
-        "lint": "eslint app.js",
-        "jest": "jest"
+        "lint": "eslint ./src/app.js",
+        "jest": "jest",
+        "seed:all": "npx sequelize-cli db:seed:all",
+        "seed:undo": "npx sequelize-cli db:seed:undo:all"
     },
     "license": "MIT",
     "devDependencies": {

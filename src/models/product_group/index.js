@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 
-const ProductGroup = sequelize.define("product_group", {
+const ProductGroup = sequelize.define("tb_product_group", {
     id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,

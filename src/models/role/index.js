@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 
 const Role = sequelize.define("tb_role", {
     id: {

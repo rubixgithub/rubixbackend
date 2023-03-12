@@ -1,7 +1,7 @@
 import { ENUM, Sequelize, DataTypes } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 
-const UnitOfMeasureMent = sequelize.define("unit_of_measurement", {
+const UnitOfMeasureMent = sequelize.define("tb_unit_of_measurement", {
     id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,

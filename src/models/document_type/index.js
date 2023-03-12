@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
-
-const DocumentType = {
-    doc_type: {
+import sequelize from "../../initializers";
+const DocumentType = sequelize.define("tb_document_type", {
+    docType: {
         type: Sequelize.BIGINT
     },
     description: {
@@ -9,6 +9,6 @@ const DocumentType = {
         allowNull: false,
         max: 45
     }
-}
+});
 
-export default DocumentType
+export default DocumentType;

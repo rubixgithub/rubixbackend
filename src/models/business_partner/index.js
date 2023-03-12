@@ -1,89 +1,90 @@
 import { Sequelize } from "sequelize";
+import sequelize from "../../initializers";
 
-const BusinessPartner = {
-    partner_company_name: {
+const BusinessPartner = sequelize.define("tb_business_partner", {
+    partnerCompanyName: {
         type: Sequelize.BIGINT
     },
-    partner_contact_person:{
+    partnerContactPerson: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    contact_number:{
+    contactNumber: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    email_id:{
+    email: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    address_1:{
+    address1: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    address_2:{
+    address2: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    city:{
+    city: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    country:{
+    country: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    website:{
+    website: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    bank_name:{
+    bankName: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    bank_branch:{
+    bankBranch: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    bank_account_no:{
+    bankAccountNo: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    ifsc_code:{
+    ifscCode: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    swift_code:{
+    swiftCode: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    ad_code:{
+    adCode: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    submission_branch:{
+    submissionBranch: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    bank_address:{
+    bankAddress: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
-    },
-}
+    }
+});
 
-export default BusinessPartner
+export default BusinessPartner;

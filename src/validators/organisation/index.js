@@ -115,12 +115,8 @@ const setupOrganisation = async (req, res, next) => {
             .min(MINIMUM_LENGTH_FOR_STATETERIYORY)
             .max(MAXIMUM_LENGTH_FOR_STATETERIYORY)
             .required(),
-        address_1: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_ADDRESS)
-            .max(MAXIMUM_LENGTH_FOR_ADDRESS),
-        address_2: Joi.string()
-            .min(MINIMUM_LENGTH_FOR_ADDRESS)
-            .max(MINIMUM_LENGTH_FOR_ADDRESS),
+        address1: Joi.string(),
+        address2: Joi.string(),
         city: Joi.string()
             .min(MINIMUM_LENGTH_FOR_CITY)
             .max(MAXIMUM_LENGTH_FOR_CITY)
@@ -131,7 +127,8 @@ const setupOrganisation = async (req, res, next) => {
             .max(MAXIMUM_LENGTH_FOR_ORGCURRENCY)
             .required(),
         fiscalYear: Joi.number().required(),
-        contactNumber: Joi.number(),
+        contactNo: Joi.number(),
+        landlineNo: Joi.number(),
         email: Joi.string()
             .min(MINIMUM_LENGTH_FOR_EMAIL)
             .max(MAXIMUM_LENGTH_FOR_EMAIL)

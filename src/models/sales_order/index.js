@@ -1,38 +1,38 @@
 import { Sequelize } from "sequelize";
+import sequelize from "../../initializers";
+const SalesOrder = sequelize.define("tb_sales_order", {
+    poNumber: {
+        type: Sequelize.BIGINT
+    },
+    poDate: {
+        type: Sequelize.BIGINT
+    },
+    soNumber: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        max: 45
+    },
+    exportContractId: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        max: 45
+    },
+    productList: {
+        type: Sequelize.BIGINT
+    },
+    pricingList: {
+        type: Sequelize.BIGINT
+    },
+    exportRoute: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        max: 45
+    },
+    column10: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        max: 45
+    }
+});
 
-const SalesOrder = {
-    po_number: {
-        type: Sequelize.BIGINT
-    },
-    po_date: {
-        type: Sequelize.BIGINT
-    },
-    so_number:{
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    export_contract_id:{
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    product_list:{
-        type: Sequelize.BIGINT
-    },
-    pricing_list:{
-        type: Sequelize.BIGINT
-    },
-    export_route:{
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-    column_10:{
-        type: Sequelize.STRING(45),
-        allowNull: false,
-        max: 45
-    },
-}
-
-export default SalesOrder
+export default SalesOrder;

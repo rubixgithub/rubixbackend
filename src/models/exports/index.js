@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
-
-const ProductGroup = {
+import sequelize from "../../initializers";
+const ProductGroup = sequelize.define("tb_export_contract", {
     contract_date: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
+        unique: true
     },
     currency: {
         type: Sequelize.STRING(45),
@@ -135,7 +135,7 @@ const ProductGroup = {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
-    },
-}
+    }
+});
 
-export default ProductGroup
+export default ProductGroup;
