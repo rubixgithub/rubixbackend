@@ -1,28 +1,28 @@
 import { Sequelize } from "sequelize";
-
-const UnitDivision = {
+import sequelize from "../../initializers";
+const UnitDivision = sequelize.define("tb_unit_division", {
     name: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
+        unique: true
     },
     address: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    gstin:{
+    gstin: {
         type: Sequelize.BIGINT
     },
-    registered_name:{
+    registeredName: {
         type: Sequelize.BIGINT
     },
-    currency:{
+    currency: {
         type: Sequelize.BIGINT
     },
-    department_id:{
+    departmentId: {
         type: Sequelize.BIGINT
     }
-}
+});
 
-export default UnitDivision
+export default UnitDivision;

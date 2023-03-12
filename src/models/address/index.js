@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 
-const Address = sequelize.define("address", {
+const Address = sequelize.define("tb_address", {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,

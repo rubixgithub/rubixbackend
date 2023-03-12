@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 
 const Organization = sequelize.define("tb_organization", {
     id: {

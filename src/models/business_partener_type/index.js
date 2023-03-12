@@ -1,12 +1,13 @@
 import { Sequelize } from "sequelize";
+import sequelize from "../../initializers";
 
-const BusinessPartnerType = {
-    partner_code:  {
+const BusinessPartnerType = sequelize.define('tb_business_partner_type',{
+    partnerCode:  {
         type: Sequelize.BIGINT
     },
-    partner_type: {
+    partnerType: {
         type: Sequelize.BIGINT
     }
-}
+})
 
 export default BusinessPartnerType

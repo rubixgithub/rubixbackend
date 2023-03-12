@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 import Organization from "../organisation";
 import Role from "../role";
 

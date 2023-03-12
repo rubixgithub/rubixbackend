@@ -1,46 +1,46 @@
 import { Sequelize } from "sequelize";
-
-const Branch = {
+import sequelize from "../../initializers";
+const Branch = sequelize.define("tb_branch", {
     name: {
         type: Sequelize.STRING(45),
         allowNull: false,
-        unique:true
+        unique: true
     },
-    address_1: {
+    address1: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    address_2:{
+    address2: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    state_teritory:{
+    stateTeritory: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    city:{
+    city: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    postal_code:{
+    postalCode: {
         type: Sequelize.BIGINT
     },
-    primary_contact:{
+    primaryContact: {
         type: Sequelize.BIGINT
     },
-    gstin:{
+    gstin: {
         type: Sequelize.BIGINT
     },
-    doc_series:{
+    docSeries: {
         type: Sequelize.BIGINT
     },
-    warehouses:{
+    warehouses: {
         type: Sequelize.BIGINT
     }
-}
+});
 
-export default Branch
+export default Branch;

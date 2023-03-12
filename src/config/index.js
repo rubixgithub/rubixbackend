@@ -1,24 +1,29 @@
-import Sequelize from 'sequelize'
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv";
+dotenv.config();
 
-dotenv.config({ path: `./${process.env.NODE_ENV || 'development'}.env` })
-
-const {
-    DATABASE_NAME,
-    DATABASE_USERNAME,
-    DATABASE_PASSWORD,
-    DIALECT
-} = process.env
-
-const sequelize = new Sequelize(DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD, {
-    dialect: DIALECT,
-    host: process.env.DB_HOST 
-})
-
-
-// const sequelize = new Sequelize("mydb", "postgres", "postgres", {
-//     dialect: "postgres",
-//     host: "rubix-database.cyrxij4ifelv.ap-south-1.rds.amazonaws.com"
-// })
-
-export default sequelize
+module.exports = {
+    server: {
+        host: process.env.HOST || "localhost",
+        port: process.env.PORT || 5010
+    },
+    db: {
+        name: process.env.DATABASE_NAME || "rubix",
+        username: process.env.DATABASE_USERNAME || "postgres",
+        password: process.env.DATABASE_PASSWORD || "postgres",
+        dialect: process.env.DATABASE_DIALECT || "postgres",
+        host: process.env.DB_HOST || "localhost"
+    },
+    jwtSecret: process.env.JWT_SECRET || "secret",
+    email: {
+        emailProtocol: "smtp",
+        emailPort: "587",
+        emailHost: "smtp.ionos.de",
+        emailUser: "awakeshkumarsingh@gmail.com",
+        emailPass: "sonisingh123",
+        emailCrypto: "tls",
+        emailCharset: "utf-8",
+        emailFrom: "test1234@gmail.com",
+        encKey: "9Q7CM34P378078969Q7CMdsfdmfkjdfkdf34P37807896",
+        frontSiteBaseUrl: "http://localhost:3001/"
+    }
+};

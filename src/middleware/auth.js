@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/default.json");
+import config from '../config'
 import { getUserService } from "../services/user";
 import { postUserLogService } from "../services/userlog";
 
@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
     if (!token)
         return res.status(401).send("Access denied. No token provided.");
     try {
-        const decoded = jwt.verify(token, config.jwtPrivateKey);
+        const decoded = jwt.verify(token, config.jwtSecret);
         const user = await getUserService.byEmail(decoded.user.email);
         if (!user) {
             res.status(401).send("Invalid token.");

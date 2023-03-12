@@ -4,6 +4,8 @@ import {
     putUserService,
     deleteUserService
 } from "../../services/user";
+
+import { getOrganizationUserService } from "../../services/organization_user";
 import { JsonWebToken } from "../../util/jwtHelper";
 import constants from "../../constants";
 import { throwError, OK } from "../../util/helper";
@@ -22,7 +24,8 @@ const {
     USER_IS_NOT_EXISTS,
     PASSWORD_NOT_MACHED,
     EXTECTATION_FAILED,
-    NO_CONTENT
+    NO_CONTENT,
+    ORGANIZATION_USER_IS_NOT_EXISTS
 } = constants;
 
 const getUsers = async (req, res) => {
@@ -58,15 +61,28 @@ const loginUser = async (req, res) => {
         if (!user) {
             OK(NOT_FOUND, res, { message: EMAIL_NOT_EXISTS });
         }
+
+        const organizationUser = await getOrganizationUserService.byUserId(
+            user.id
+        );
+        if (!organizationUser) {
+            OK(NOT_FOUND, res, { message: ORGANIZATION_USER_IS_NOT_EXISTS });
+        }
         const isMached = compare(password, user.password) ? true : false;
         if (isMached) {
             const jwtUtil = new JsonWebToken("secret");
             const accessToken = jwtUtil.generate(
-                { id: user.id, organization_id: "newOrganisation.id" },
+                {
+                    id: user.id,
+                    organization_id: organizationUser.organizationId
+                },
                 constants.TOKEN_LIFETIME_IN_SECONDS
             );
             const refreshToken = jwtUtil.generate(
-                { id: user.id, organization_id: "newOrganisation.id" },
+                {
+                    id: user.id,
+                    organization_id: organizationUser.organizationId
+                },
                 constants.REFRESH_LINK_LIFETIME_IN_SECONDS
             );
             const result = {

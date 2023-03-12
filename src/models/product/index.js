@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
 import ProductGroup from "../product_group";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 import UnitOfMeasureMent from "../unit_of_measurement";
 import Manufacturer from "../manufacturer";
 
-const Product = sequelize.define("product", {
+const Product = sequelize.define("tb_product", {
     id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,

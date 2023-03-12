@@ -1,60 +1,60 @@
 import { Sequelize } from "sequelize";
-
-const ProductList = {
+import sequelize from "../../initializers";
+const ProductList = sequelize.define("tb_product_list", {
     contract_id: {
         type: Sequelize.BIGINT
     },
     product_id: {
         type: Sequelize.BIGINT
     },
-    customer_product_detials:{
+    customer_product_detials: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    quantity:{
+    quantity: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    unit_of_measurement:{
+    unit_of_measurement: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    price:{
+    price: {
         type: Sequelize.BIGINT
     },
-    packing_code:{
+    packing_code: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    one_pack_quantity:{
+    one_pack_quantity: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    gross_weight:{
+    gross_weight: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    storage_location:{
+    storage_location: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    pss:{
+    pss: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
     },
-    shipping_mark_i:{
+    shipping_mark_i: {
         type: Sequelize.STRING(45),
         allowNull: false,
         max: 45
-    },
-}
+    }
+});
 
-export default ProductList
+export default ProductList;

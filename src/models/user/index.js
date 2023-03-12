@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../../config";
+import sequelize from "../../initializers";
 import OrganizationUser from "../organisation_user";
 import { encrypt } from "../../util/encryptionHelper";
 
